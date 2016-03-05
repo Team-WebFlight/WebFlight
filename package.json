@@ -17,6 +17,7 @@
     "url": "https://github.com/tbywong/WebFlight/issues"
   },
   "dependencies": {
+    "cheerio": "^0.20.0",
     "electron-spawn": "^4.1.1",
     "mocha": "^2.4.5",
     "nodemon": "^1.9.1"
