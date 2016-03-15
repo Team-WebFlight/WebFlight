@@ -1,7 +1,7 @@
 'use strict'
 
 const express = require('express')
-const botGenerator = require('./botGenerator.js')
+const botGenerator = require('botGenerator.js')
 const app = express()
 const althtml = require('./althtml.js')
 
