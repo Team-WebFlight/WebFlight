@@ -15,7 +15,8 @@ const WebFlight = {}
   // originalHtml: .html file to be rebuilt
   // filesFolder: folder with files to be torrented
   // filesRoute: path on the server for files
-  // jsOutput: location and name for webflight.js file
+  // jsOutputDL: location and name for webflight.js file
+  // jsOutputUL: location and name for file seeding torrents
   // htmlOutput: location and name for rebuilt html file
   // route: route to redirect
 WebFlight.start = (options) => {
@@ -28,7 +29,7 @@ WebFlight.start = (options) => {
       .then(writeJsUL.bind(null, options.jsOutputUL))
       .then(replaceHtml.bind(null, originalHtmlString))
       .then(writeNewHtml.bind(null, options.htmlOutput))
-      .then(botGenerator.bind(null, options))
+      // .then(botGenerator.bind(null, options))
       .then(resolve)
 
     WebFlight.route = options.route
