@@ -24,6 +24,7 @@
     "casperjs": "^1.1.0-beta5",
     "cheerio": "^0.20.0",
     "create-torrent": "^3.22.2",
+    "electron-prebuilt": "^0.37.2",
     "electron-spawn": "^4.1.1",
     "express": "^4.13.4",
     "jquery": "^2.2.1",

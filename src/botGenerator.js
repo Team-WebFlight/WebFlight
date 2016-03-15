@@ -5,7 +5,7 @@ module.exports = botGenerator
 function botGenerator (options) {
   return new Promise((resolve, reject) => {
     console.log('starting bot')
-    const electron = spawn(options.jsOutput, {
+    const electron = spawn(options.jsOutputUL, {
       detached: true
     })
     electron.stderr.on('data', function (data) {
