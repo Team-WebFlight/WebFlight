@@ -1,6 +1,7 @@
 node_modules
 .jshintrc
-
+/typings
 images
-
+jsconfig.json
 .DS_Store
+.eslintignore
