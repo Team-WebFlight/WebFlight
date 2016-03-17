@@ -1,0 +1,561 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save-dev',
+1 verbose cli   'chai-fs' ]
+2 info using npm@2.14.12
+3 info using node@v4.2.6
+4 verbose install initial load of /Users/Baoyee/Codesmith/WebFlight/package.json
+5 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/babel-eslint/package.json
+6 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/babel-preset-es2015/package.json
+7 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/babelify/package.json
+8 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/casperjs/package.json
+9 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai/package.json
+10 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-as-promised/package.json
+11 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/cheerio/package.json
+12 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/create-torrent/package.json
+13 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/electron-prebuilt/package.json
+14 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/electron-spawn/package.json
+15 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/expect/package.json
+16 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/express/package.json
+17 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/gulp/package.json
+18 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/gulp-mocha/package.json
+19 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/gulp-util/package.json
+20 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/jquery/package.json
+21 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/mocha/package.json
+22 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/nodemon/package.json
+23 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/parse-torrent/package.json
+24 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/path/package.json
+25 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/sha1/package.json
+26 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/socket.io/package.json
+27 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/standard/package.json
+28 verbose installManyTop reading scoped package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/webtorrent/package.json
+29 info package.json casperjs@1.1.0-beta5 No license field.
+30 info package.json path@0.12.7 path is also the name of a node core module.
+31 verbose readDependencies loading dependencies from /Users/Baoyee/Codesmith/WebFlight/package.json
+32 silly cache add args [ 'chai-fs', null ]
+33 verbose cache add spec chai-fs
+34 silly cache add parsed spec Result {
+34 silly cache add   raw: 'chai-fs',
+34 silly cache add   scope: null,
+34 silly cache add   name: 'chai-fs',
+34 silly cache add   rawSpec: '',
+34 silly cache add   spec: 'latest',
+34 silly cache add   type: 'tag' }
+35 silly addNamed chai-fs@latest
+36 verbose addNamed "latest" is being treated as a dist-tag for chai-fs
+37 info addNameTag [ 'chai-fs', 'latest' ]
+38 silly mapToRegistry name chai-fs
+39 silly mapToRegistry using default registry
+40 silly mapToRegistry registry https://registry.npmjs.org/
+41 silly mapToRegistry uri https://registry.npmjs.org/chai-fs
+42 verbose addNameTag registry:https://registry.npmjs.org/chai-fs not in flight; fetching
+43 verbose request uri https://registry.npmjs.org/chai-fs
+44 verbose request no auth needed
+45 info attempt registry request try #1 at 11:55:11 AM
+46 verbose request id 6d00d36aca2dea74
+47 http request GET https://registry.npmjs.org/chai-fs
+48 http 200 https://registry.npmjs.org/chai-fs
+49 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+49 verbose headers   etag: '"6YB7KKPLQ5PLMFPER1YPL1S39"',
+49 verbose headers   'content-type': 'application/json',
+49 verbose headers   'cache-control': 'max-age=300',
+49 verbose headers   'content-length': '15835',
+49 verbose headers   'accept-ranges': 'bytes',
+49 verbose headers   date: 'Wed, 16 Mar 2016 18:55:11 GMT',
+49 verbose headers   via: '1.1 varnish',
+49 verbose headers   age: '0',
+49 verbose headers   connection: 'keep-alive',
+49 verbose headers   'x-served-by': 'cache-sjc3123-SJC',
+49 verbose headers   'x-cache': 'MISS',
+49 verbose headers   'x-cache-hits': '0',
+49 verbose headers   'x-timer': 'S1458154511.548094,VS0,VE86',
+49 verbose headers   vary: 'Accept' }
+50 silly get cb [ 200,
+50 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+50 silly get     etag: '"6YB7KKPLQ5PLMFPER1YPL1S39"',
+50 silly get     'content-type': 'application/json',
+50 silly get     'cache-control': 'max-age=300',
+50 silly get     'content-length': '15835',
+50 silly get     'accept-ranges': 'bytes',
+50 silly get     date: 'Wed, 16 Mar 2016 18:55:11 GMT',
+50 silly get     via: '1.1 varnish',
+50 silly get     age: '0',
+50 silly get     connection: 'keep-alive',
+50 silly get     'x-served-by': 'cache-sjc3123-SJC',
+50 silly get     'x-cache': 'MISS',
+50 silly get     'x-cache-hits': '0',
+50 silly get     'x-timer': 'S1458154511.548094,VS0,VE86',
+50 silly get     vary: 'Accept' } ]
+51 verbose get saving chai-fs to /Users/Baoyee/.npm/registry.npmjs.org/chai-fs/.cache.json
+52 silly addNameTag next cb for chai-fs with tag latest
+53 silly addNamed chai-fs@0.1.0
+54 verbose addNamed "0.1.0" is a plain semver version for chai-fs
+55 silly mapToRegistry name chai-fs
+56 silly mapToRegistry using default registry
+57 silly mapToRegistry registry https://registry.npmjs.org/
+58 silly mapToRegistry uri https://registry.npmjs.org/chai-fs
+59 verbose addRemoteTarball https://registry.npmjs.org/chai-fs/-/chai-fs-0.1.0.tgz not in flight; adding
+60 verbose addRemoteTarball [ 'https://registry.npmjs.org/chai-fs/-/chai-fs-0.1.0.tgz',
+60 verbose addRemoteTarball   'ee38bb4a467549926f4882bf57f0c5ea345a0980' ]
+61 info retry fetch attempt 1 at 11:55:11 AM
+62 info attempt registry request try #1 at 11:55:11 AM
+63 http fetch GET https://registry.npmjs.org/chai-fs/-/chai-fs-0.1.0.tgz
+64 http fetch 200 https://registry.npmjs.org/chai-fs/-/chai-fs-0.1.0.tgz
+65 silly fetchAndShaCheck shasum ee38bb4a467549926f4882bf57f0c5ea345a0980
+66 verbose addTmpTarball /var/folders/pr/1krdfp2s5b5_q9t7zhc8d_740000gp/T/npm-20174-1fc1fdbb/registry.npmjs.org/chai-fs/-/chai-fs-0.1.0.tgz not in flight; adding
+67 verbose addTmpTarball already have metadata; skipping unpack for chai-fs@0.1.0
+68 silly cache afterAdd chai-fs@0.1.0
+69 verbose afterAdd /Users/Baoyee/.npm/chai-fs/0.1.0/package/package.json not in flight; writing
+70 verbose afterAdd /Users/Baoyee/.npm/chai-fs/0.1.0/package/package.json written
+71 silly install resolved [ { name: 'chai-fs',
+71 silly install resolved     version: '0.1.0',
+71 silly install resolved     description: 'Chai assertions for Node.js filesystem',
+71 silly install resolved     author:
+71 silly install resolved      { name: 'Bart van der Schoor',
+71 silly install resolved        url: 'https://github.com/Bartvds' },
+71 silly install resolved     repository: { type: 'git', url: 'https://github.com/Bartvds/chai-fs.git' },
+71 silly install resolved     licenses: [ [Object] ],
+71 silly install resolved     bugs: { url: 'https://github.com/Bartvds/chai-fs/issues' },
+71 silly install resolved     keywords:
+71 silly install resolved      [ 'chai',
+71 silly install resolved        'test',
+71 silly install resolved        'assertion',
+71 silly install resolved        'assert',
+71 silly install resolved        'testing',
+71 silly install resolved        'file',
+71 silly install resolved        'path',
+71 silly install resolved        'filesystem' ],
+71 silly install resolved     main: 'lib/index.js',
+71 silly install resolved     engines: { node: '>= 0.10.0' },
+71 silly install resolved     scripts: { test: 'grunt test' },
+71 silly install resolved     dependencies: { 'bit-mask': '0.0.2-alpha' },
+71 silly install resolved     devDependencies:
+71 silly install resolved      { chai: '^1.9.1',
+71 silly install resolved        'chai-json-schema': '1.0.4',
+71 silly install resolved        grunt: '0.4.1',
+71 silly install resolved        'grunt-bump': '0.0.11',
+71 silly install resolved        'grunt-cli': '0.1',
+71 silly install resolved        'grunt-contrib-clean': '0.5.0',
+71 silly install resolved        'grunt-contrib-jshint': '^0.10.0',
+71 silly install resolved        'grunt-mocha-test': '^0.11.0',
+71 silly install resolved        'jshint-path-reporter': '~0.1',
+71 silly install resolved        mkdirp: '^0.5.0',
+71 silly install resolved        'mocha-unfunk-reporter': '^0.4.0',
+71 silly install resolved        underscore: '^1.6.0' },
+71 silly install resolved     peerDependencies: { chai: '>= 1.6.1 < 2' },
+71 silly install resolved     homepage: 'https://github.com/Bartvds/chai-fs',
+71 silly install resolved     _id: 'chai-fs@0.1.0',
+71 silly install resolved     _shasum: 'ee38bb4a467549926f4882bf57f0c5ea345a0980',
+71 silly install resolved     _from: 'chai-fs@latest',
+71 silly install resolved     _npmVersion: '1.4.9',
+71 silly install resolved     _npmUser: { name: 'bartvds', email: 'bartvanderschoor@gmail.com' },
+71 silly install resolved     maintainers: [ [Object] ],
+71 silly install resolved     dist:
+71 silly install resolved      { shasum: 'ee38bb4a467549926f4882bf57f0c5ea345a0980',
+71 silly install resolved        tarball: 'http://registry.npmjs.org/chai-fs/-/chai-fs-0.1.0.tgz' },
+71 silly install resolved     directories: {},
+71 silly install resolved     _resolved: 'https://registry.npmjs.org/chai-fs/-/chai-fs-0.1.0.tgz' } ]
+72 info install chai-fs@0.1.0 into /Users/Baoyee/Codesmith/WebFlight
+73 info installOne chai-fs@0.1.0
+74 verbose installOne of chai-fs to /Users/Baoyee/Codesmith/WebFlight not in flight; installing
+75 verbose lock using /Users/Baoyee/.npm/_locks/chai-fs-e79d4a03ed937650.lock for /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs
+76 silly install write writing chai-fs 0.1.0 to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs
+77 verbose unbuild node_modules/chai-fs
+78 silly gentlyRm /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs is being purged from base /Users/Baoyee/Codesmith/WebFlight
+79 verbose gentlyRm don't care about contents; nuking /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs
+80 verbose tar unpack /Users/Baoyee/.npm/chai-fs/0.1.0/package.tgz
+81 verbose tar unpacking to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs
+82 silly gentlyRm /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs is being purged
+83 verbose gentlyRm don't care about contents; nuking /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs
+84 silly gunzTarPerm modes [ '755', '644' ]
+85 silly gunzTarPerm extractEntry package.json
+86 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+87 silly gunzTarPerm extractEntry README.md
+88 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+89 silly gunzTarPerm extractEntry LICENSE-MIT
+90 silly gunzTarPerm modified mode [ 'LICENSE-MIT', 438, 420 ]
+91 silly gunzTarPerm extractEntry lib/extend.js
+92 silly gunzTarPerm modified mode [ 'lib/extend.js', 438, 420 ]
+93 silly gunzTarPerm extractEntry lib/index.js
+94 silly gunzTarPerm modified mode [ 'lib/index.js', 438, 420 ]
+95 silly gunzTarPerm extractEntry lib/util.js
+96 silly gunzTarPerm modified mode [ 'lib/util.js', 438, 420 ]
+97 silly gunzTarPerm extractEntry lib/assertions/content.js
+98 silly gunzTarPerm modified mode [ 'lib/assertions/content.js', 438, 420 ]
+99 silly gunzTarPerm extractEntry lib/assertions/content_match.js
+100 silly gunzTarPerm modified mode [ 'lib/assertions/content_match.js', 438, 420 ]
+101 silly gunzTarPerm extractEntry lib/assertions/directory.js
+102 silly gunzTarPerm modified mode [ 'lib/assertions/directory.js', 438, 420 ]
+103 silly gunzTarPerm extractEntry lib/assertions/file.js
+104 silly gunzTarPerm modified mode [ 'lib/assertions/file.js', 438, 420 ]
+105 silly gunzTarPerm extractEntry lib/assertions/mode.js
+106 silly gunzTarPerm modified mode [ 'lib/assertions/mode.js', 438, 420 ]
+107 silly gunzTarPerm extractEntry lib/assertions/name.js
+108 silly gunzTarPerm modified mode [ 'lib/assertions/name.js', 438, 420 ]
+109 silly gunzTarPerm extractEntry lib/assertions/path.js
+110 silly gunzTarPerm modified mode [ 'lib/assertions/path.js', 438, 420 ]
+111 verbose write writing to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/package.json
+112 info preinstall chai-fs@0.1.0
+113 verbose readDependencies loading dependencies from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/package.json
+114 silly prepareForInstallMany adding bit-mask@0.0.2-alpha from chai-fs dependencies
+115 silly prepareForInstallMany adding chai@>= 1.6.1 < 2 from chai-fs peerDependencies
+116 warn peerDependencies The peer dependency chai@>= 1.6.1 < 2 included from chai-fs will no
+117 warn peerDependencies longer be automatically installed to fulfill the peerDependency
+118 warn peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+119 verbose readDependencies loading dependencies from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/package.json
+120 silly cache add args [ 'bit-mask@0.0.2-alpha', null ]
+121 verbose cache add spec bit-mask@0.0.2-alpha
+122 silly cache add parsed spec Result {
+122 silly cache add   raw: 'bit-mask@0.0.2-alpha',
+122 silly cache add   scope: null,
+122 silly cache add   name: 'bit-mask',
+122 silly cache add   rawSpec: '0.0.2-alpha',
+122 silly cache add   spec: '0.0.2-alpha',
+122 silly cache add   type: 'version' }
+123 silly addNamed bit-mask@0.0.2-alpha
+124 verbose addNamed "0.0.2-alpha" is a plain semver version for bit-mask
+125 silly mapToRegistry name bit-mask
+126 silly mapToRegistry using default registry
+127 silly mapToRegistry registry https://registry.npmjs.org/
+128 silly mapToRegistry uri https://registry.npmjs.org/bit-mask
+129 verbose addNameVersion registry:https://registry.npmjs.org/bit-mask not in flight; fetching
+130 verbose request uri https://registry.npmjs.org/bit-mask
+131 verbose request no auth needed
+132 info attempt registry request try #1 at 11:55:12 AM
+133 http request GET https://registry.npmjs.org/bit-mask
+134 http 200 https://registry.npmjs.org/bit-mask
+135 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+135 verbose headers   etag: '"BSYAJWMESW0SR43WITV7597Y7"',
+135 verbose headers   'content-type': 'application/json',
+135 verbose headers   'cache-control': 'max-age=300',
+135 verbose headers   'content-length': '5176',
+135 verbose headers   'accept-ranges': 'bytes',
+135 verbose headers   date: 'Wed, 16 Mar 2016 18:55:12 GMT',
+135 verbose headers   via: '1.1 varnish',
+135 verbose headers   age: '253',
+135 verbose headers   connection: 'keep-alive',
+135 verbose headers   'x-served-by': 'cache-sjc3133-SJC',
+135 verbose headers   'x-cache': 'HIT',
+135 verbose headers   'x-cache-hits': '1',
+135 verbose headers   'x-timer': 'S1458154512.717095,VS0,VE0',
+135 verbose headers   vary: 'Accept' }
+136 silly get cb [ 200,
+136 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+136 silly get     etag: '"BSYAJWMESW0SR43WITV7597Y7"',
+136 silly get     'content-type': 'application/json',
+136 silly get     'cache-control': 'max-age=300',
+136 silly get     'content-length': '5176',
+136 silly get     'accept-ranges': 'bytes',
+136 silly get     date: 'Wed, 16 Mar 2016 18:55:12 GMT',
+136 silly get     via: '1.1 varnish',
+136 silly get     age: '253',
+136 silly get     connection: 'keep-alive',
+136 silly get     'x-served-by': 'cache-sjc3133-SJC',
+136 silly get     'x-cache': 'HIT',
+136 silly get     'x-cache-hits': '1',
+136 silly get     'x-timer': 'S1458154512.717095,VS0,VE0',
+136 silly get     vary: 'Accept' } ]
+137 verbose get saving bit-mask to /Users/Baoyee/.npm/registry.npmjs.org/bit-mask/.cache.json
+138 silly mapToRegistry name bit-mask
+139 silly mapToRegistry using default registry
+140 silly mapToRegistry registry https://registry.npmjs.org/
+141 silly mapToRegistry uri https://registry.npmjs.org/bit-mask
+142 verbose addRemoteTarball https://registry.npmjs.org/bit-mask/-/bit-mask-0.0.2-alpha.tgz not in flight; adding
+143 verbose addRemoteTarball [ 'https://registry.npmjs.org/bit-mask/-/bit-mask-0.0.2-alpha.tgz',
+143 verbose addRemoteTarball   '42880fa80055151165d5fa15b331bc0459c27372' ]
+144 info retry fetch attempt 1 at 11:55:12 AM
+145 info attempt registry request try #1 at 11:55:12 AM
+146 http fetch GET https://registry.npmjs.org/bit-mask/-/bit-mask-0.0.2-alpha.tgz
+147 http fetch 200 https://registry.npmjs.org/bit-mask/-/bit-mask-0.0.2-alpha.tgz
+148 silly fetchAndShaCheck shasum 42880fa80055151165d5fa15b331bc0459c27372
+149 verbose addTmpTarball /var/folders/pr/1krdfp2s5b5_q9t7zhc8d_740000gp/T/npm-20174-1fc1fdbb/registry.npmjs.org/bit-mask/-/bit-mask-0.0.2-alpha.tgz not in flight; adding
+150 verbose addTmpTarball already have metadata; skipping unpack for bit-mask@0.0.2-alpha
+151 silly cache afterAdd bit-mask@0.0.2-alpha
+152 verbose afterAdd /Users/Baoyee/.npm/bit-mask/0.0.2-alpha/package/package.json not in flight; writing
+153 verbose afterAdd /Users/Baoyee/.npm/bit-mask/0.0.2-alpha/package/package.json written
+154 silly install resolved [ { name: 'bit-mask',
+154 silly install resolved     homepage: 'https://github.com/khrome/bit-mask',
+154 silly install resolved     version: '0.0.2-alpha',
+154 silly install resolved     main: 'bit-mask.js',
+154 silly install resolved     description: 'A utility for manipulating bit masks',
+154 silly install resolved     keywords: [ 'bitmask', 'file mask', 'permissions' ],
+154 silly install resolved     author:
+154 silly install resolved      { name: 'Abbey Hawk Sparrow',
+154 silly install resolved        email: '@khrome',
+154 silly install resolved        url: 'http://patternweaver.com' },
+154 silly install resolved     contributors: [],
+154 silly install resolved     bugs: { url: 'https://github.com/khrome/bit-mask/issues' },
+154 silly install resolved     license: 'MIT',
+154 silly install resolved     repository: { type: 'git', url: 'git@github.com:khrome/bit-mask.git' },
+154 silly install resolved     dependencies: { prime: '0.0.5-alpha' },
+154 silly install resolved     devDependencies: { mocha: '*', should: '*' },
+154 silly install resolved     optionalDependencies: {},
+154 silly install resolved     engines: { node: '*' },
+154 silly install resolved     readme: 'bit-mask.js\n==============\nAn NPM for manipulating bit masks\n\nJust a convenient abstraction for computing bitmasks, such as file permissions. \n\n    var BitMask = require(\'bit-mask\');\n\nBit Masks\n---------\nDeclare a new BitMask with an initial value\n\n    var mask = new BitMask(value, [base]);\n    \nSet a particular bit with a boolean\n\n    mask.setBit(position, value)\n    \nget the boolean value of a particular bit\n    \n    mask.getBit(position)\n    \nget the bits as a string of binary digits\n    \n    maks.bits()\n    \nOwnership Mask\n--------------\n\nDeclare a new Ownership Mask with an initial value\n\n    var mask = new BitMask.OwnershipMask(value);\n    \nThen you have all the functions from the BitMask plus you can get the permissions in a more readable way with:\n\n    mask.hasPermission(context, permission)\n    \nwhere context is \'user\', \'group\' or \'world\' and permission is \'read\', \'write\', \'execute\' and a corresponding set:\n\n    mask.setPermission(context, permission, value)\n    \nas well as a modify function which allows you to pass chmod style modifier strings as well as integer values.\n\n    mask.modify(\'ugo+rwx\')\n    mask.modify(755);\n\nTesting\n-------\n\nRun the tests at the project root with:\n\n    mocha\n\nEnjoy,\n\n-Abbey Hawk Sparrow',
+154 silly install resolved     readmeFilename: 'README.md',
+154 silly install resolved     _id: 'bit-mask@0.0.2-alpha',
+154 silly install resolved     dist:
+154 silly install resolved      { shasum: '42880fa80055151165d5fa15b331bc0459c27372',
+154 silly install resolved        tarball: 'http://registry.npmjs.org/bit-mask/-/bit-mask-0.0.2-alpha.tgz' },
+154 silly install resolved     _npmVersion: '1.1.70',
+154 silly install resolved     _npmUser: { name: 'khrome', email: 'abbey@khrome.net' },
+154 silly install resolved     maintainers: [ [Object] ],
+154 silly install resolved     directories: {},
+154 silly install resolved     _shasum: '42880fa80055151165d5fa15b331bc0459c27372',
+154 silly install resolved     _resolved: 'https://registry.npmjs.org/bit-mask/-/bit-mask-0.0.2-alpha.tgz',
+154 silly install resolved     _from: 'bit-mask@0.0.2-alpha' } ]
+155 info install bit-mask@0.0.2-alpha into /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs
+156 info installOne bit-mask@0.0.2-alpha
+157 verbose installOne of bit-mask to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs not in flight; installing
+158 verbose lock using /Users/Baoyee/.npm/_locks/bit-mask-2cb67c9c5cdb0d06.lock for /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask
+159 silly install write writing bit-mask 0.0.2-alpha to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask
+160 verbose unbuild node_modules/chai-fs/node_modules/bit-mask
+161 silly gentlyRm /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask is being purged from base /Users/Baoyee/Codesmith/WebFlight
+162 verbose gentlyRm don't care about contents; nuking /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask
+163 verbose tar unpack /Users/Baoyee/.npm/bit-mask/0.0.2-alpha/package.tgz
+164 verbose tar unpacking to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask
+165 silly gentlyRm /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask is being purged
+166 verbose gentlyRm don't care about contents; nuking /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask
+167 silly gunzTarPerm modes [ '755', '644' ]
+168 silly gunzTarPerm extractEntry package.json
+169 silly gunzTarPerm extractEntry .npmignore
+170 silly gunzTarPerm extractEntry README.md
+171 silly gunzTarPerm extractEntry bit-mask.js
+172 silly gunzTarPerm extractEntry demo.js
+173 silly gunzTarPerm extractEntry test.js
+174 verbose write writing to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/package.json
+175 info preinstall bit-mask@0.0.2-alpha
+176 verbose readDependencies loading dependencies from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/package.json
+177 silly prepareForInstallMany adding prime@0.0.5-alpha from bit-mask dependencies
+178 verbose readDependencies loading dependencies from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/package.json
+179 silly cache add args [ 'prime@0.0.5-alpha', null ]
+180 verbose cache add spec prime@0.0.5-alpha
+181 silly cache add parsed spec Result {
+181 silly cache add   raw: 'prime@0.0.5-alpha',
+181 silly cache add   scope: null,
+181 silly cache add   name: 'prime',
+181 silly cache add   rawSpec: '0.0.5-alpha',
+181 silly cache add   spec: '0.0.5-alpha',
+181 silly cache add   type: 'version' }
+182 silly addNamed prime@0.0.5-alpha
+183 verbose addNamed "0.0.5-alpha" is a plain semver version for prime
+184 silly mapToRegistry name prime
+185 silly mapToRegistry using default registry
+186 silly mapToRegistry registry https://registry.npmjs.org/
+187 silly mapToRegistry uri https://registry.npmjs.org/prime
+188 verbose addNameVersion registry:https://registry.npmjs.org/prime not in flight; fetching
+189 verbose request uri https://registry.npmjs.org/prime
+190 verbose request no auth needed
+191 info attempt registry request try #1 at 11:55:12 AM
+192 http request GET https://registry.npmjs.org/prime
+193 http 200 https://registry.npmjs.org/prime
+194 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+194 verbose headers   etag: '"BN8NC4P0HN0MZXC7RBDQ5L7DD"',
+194 verbose headers   'content-type': 'application/json',
+194 verbose headers   'cache-control': 'max-age=300',
+194 verbose headers   'content-length': '24341',
+194 verbose headers   'accept-ranges': 'bytes',
+194 verbose headers   date: 'Wed, 16 Mar 2016 18:55:12 GMT',
+194 verbose headers   via: '1.1 varnish',
+194 verbose headers   age: '252',
+194 verbose headers   connection: 'keep-alive',
+194 verbose headers   'x-served-by': 'cache-sjc3132-SJC',
+194 verbose headers   'x-cache': 'HIT',
+194 verbose headers   'x-cache-hits': '1',
+194 verbose headers   'x-timer': 'S1458154512.957025,VS0,VE0',
+194 verbose headers   vary: 'Accept' }
+195 silly get cb [ 200,
+195 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+195 silly get     etag: '"BN8NC4P0HN0MZXC7RBDQ5L7DD"',
+195 silly get     'content-type': 'application/json',
+195 silly get     'cache-control': 'max-age=300',
+195 silly get     'content-length': '24341',
+195 silly get     'accept-ranges': 'bytes',
+195 silly get     date: 'Wed, 16 Mar 2016 18:55:12 GMT',
+195 silly get     via: '1.1 varnish',
+195 silly get     age: '252',
+195 silly get     connection: 'keep-alive',
+195 silly get     'x-served-by': 'cache-sjc3132-SJC',
+195 silly get     'x-cache': 'HIT',
+195 silly get     'x-cache-hits': '1',
+195 silly get     'x-timer': 'S1458154512.957025,VS0,VE0',
+195 silly get     vary: 'Accept' } ]
+196 verbose get saving prime to /Users/Baoyee/.npm/registry.npmjs.org/prime/.cache.json
+197 silly mapToRegistry name prime
+198 silly mapToRegistry using default registry
+199 silly mapToRegistry registry https://registry.npmjs.org/
+200 silly mapToRegistry uri https://registry.npmjs.org/prime
+201 verbose addRemoteTarball https://registry.npmjs.org/prime/-/prime-0.0.5-alpha.tgz not in flight; adding
+202 verbose addRemoteTarball [ 'https://registry.npmjs.org/prime/-/prime-0.0.5-alpha.tgz',
+202 verbose addRemoteTarball   'e4d49a657bed2eb30e513adc6e5dfb83622e90c1' ]
+203 info retry fetch attempt 1 at 11:55:12 AM
+204 info attempt registry request try #1 at 11:55:12 AM
+205 http fetch GET https://registry.npmjs.org/prime/-/prime-0.0.5-alpha.tgz
+206 http fetch 200 https://registry.npmjs.org/prime/-/prime-0.0.5-alpha.tgz
+207 silly fetchAndShaCheck shasum e4d49a657bed2eb30e513adc6e5dfb83622e90c1
+208 verbose addTmpTarball /var/folders/pr/1krdfp2s5b5_q9t7zhc8d_740000gp/T/npm-20174-1fc1fdbb/registry.npmjs.org/prime/-/prime-0.0.5-alpha.tgz not in flight; adding
+209 verbose addTmpTarball already have metadata; skipping unpack for prime@0.0.5-alpha
+210 silly cache afterAdd prime@0.0.5-alpha
+211 verbose afterAdd /Users/Baoyee/.npm/prime/0.0.5-alpha/package/package.json not in flight; writing
+212 verbose afterAdd /Users/Baoyee/.npm/prime/0.0.5-alpha/package/package.json written
+213 silly install resolved [ { name: 'prime',
+213 silly install resolved     homepage: 'https://github.com/mootools/prime',
+213 silly install resolved     version: '0.0.5-alpha',
+213 silly install resolved     main: './prime/index.js',
+213 silly install resolved     description: 'prime, an OOP javascript library for node and the web.',
+213 silly install resolved     keywords: [ 'library', 'framework', 'es5', 'class', 'array', 'object' ],
+213 silly install resolved     author:
+213 silly install resolved      { name: 'Valerio Proietti',
+213 silly install resolved        email: '@kamicane',
+213 silly install resolved        url: 'http://mad4milk.net' },
+213 silly install resolved     contributors: [ [Object], [Object], [Object] ],
+213 silly install resolved     bugs: { url: 'https://github.com/mootools/prime/issues' },
+213 silly install resolved     license: 'MIT (http://mootools.net/license.txt)',
+213 silly install resolved     repository: { type: 'git', url: 'git://github.com/mootools/prime.git' },
+213 silly install resolved     dependencies: {},
+213 silly install resolved     devDependencies: {},
+213 silly install resolved     optionalDependencies: {},
+213 silly install resolved     engines: { node: '*' },
+213 silly install resolved     _npmUser: { name: 'kamicane', email: 'kamicane@gmail.com' },
+213 silly install resolved     _id: 'prime@0.0.5-alpha',
+213 silly install resolved     _engineSupported: true,
+213 silly install resolved     _npmVersion: '1.1.15',
+213 silly install resolved     _nodeVersion: 'v0.6.13',
+213 silly install resolved     _defaultsLoaded: true,
+213 silly install resolved     dist:
+213 silly install resolved      { shasum: 'e4d49a657bed2eb30e513adc6e5dfb83622e90c1',
+213 silly install resolved        tarball: 'http://registry.npmjs.org/prime/-/prime-0.0.5-alpha.tgz' },
+213 silly install resolved     maintainers: [ [Object] ],
+213 silly install resolved     directories: {},
+213 silly install resolved     _shasum: 'e4d49a657bed2eb30e513adc6e5dfb83622e90c1',
+213 silly install resolved     _resolved: 'https://registry.npmjs.org/prime/-/prime-0.0.5-alpha.tgz',
+213 silly install resolved     _from: 'prime@0.0.5-alpha' } ]
+214 info install prime@0.0.5-alpha into /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask
+215 info installOne prime@0.0.5-alpha
+216 verbose installOne of prime to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask not in flight; installing
+217 verbose lock using /Users/Baoyee/.npm/_locks/prime-34afd0be733ef4fa.lock for /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime
+218 silly install write writing prime 0.0.5-alpha to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime
+219 verbose unbuild node_modules/chai-fs/node_modules/bit-mask/node_modules/prime
+220 silly gentlyRm /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime is being purged from base /Users/Baoyee/Codesmith/WebFlight
+221 verbose gentlyRm don't care about contents; nuking /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime
+222 verbose tar unpack /Users/Baoyee/.npm/prime/0.0.5-alpha/package.tgz
+223 verbose tar unpacking to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime
+224 silly gentlyRm /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime is being purged
+225 verbose gentlyRm don't care about contents; nuking /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime
+226 silly gunzTarPerm modes [ '755', '644' ]
+227 silly gunzTarPerm extractEntry package.json
+228 silly gunzTarPerm extractEntry .npmignore
+229 silly gunzTarPerm extractEntry collection/hash.js
+230 silly gunzTarPerm extractEntry collection/list.js
+231 silly gunzTarPerm extractEntry collection/map.js
+232 silly gunzTarPerm extractEntry es5/array.js
+233 silly gunzTarPerm extractEntry es5/function.js
+234 silly gunzTarPerm extractEntry es5/number.js
+235 silly gunzTarPerm extractEntry es5/regexp.js
+236 silly gunzTarPerm extractEntry es5/string.js
+237 silly gunzTarPerm extractEntry prime/index.js
+238 silly gunzTarPerm extractEntry types/number.js
+239 silly gunzTarPerm extractEntry types/string.js
+240 silly gunzTarPerm extractEntry util/emitter.js
+241 silly gunzTarPerm extractEntry util/ghost.js
+242 silly gunzTarPerm extractEntry util/shell.js
+243 silly gunzTarPerm extractEntry util/type.js
+244 verbose write writing to /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime/package.json
+245 info preinstall prime@0.0.5-alpha
+246 verbose readDependencies loading dependencies from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime/package.json
+247 verbose readDependencies loading dependencies from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime/package.json
+248 silly install resolved []
+249 verbose about to build /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime
+250 info build /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime
+251 info linkStuff prime@0.0.5-alpha
+252 silly linkStuff prime@0.0.5-alpha has /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules as its parent node_modules
+253 verbose linkBins prime@0.0.5-alpha
+254 verbose linkMans prime@0.0.5-alpha
+255 verbose rebuildBundles prime@0.0.5-alpha
+256 info install prime@0.0.5-alpha
+257 info postinstall prime@0.0.5-alpha
+258 verbose unlock done using /Users/Baoyee/.npm/_locks/prime-34afd0be733ef4fa.lock for /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask/node_modules/prime
+259 verbose about to build /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask
+260 info build /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask
+261 info linkStuff bit-mask@0.0.2-alpha
+262 silly linkStuff bit-mask@0.0.2-alpha has /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules as its parent node_modules
+263 verbose linkBins bit-mask@0.0.2-alpha
+264 verbose linkMans bit-mask@0.0.2-alpha
+265 verbose rebuildBundles bit-mask@0.0.2-alpha
+266 verbose rebuildBundles [ 'prime' ]
+267 info install bit-mask@0.0.2-alpha
+268 info postinstall bit-mask@0.0.2-alpha
+269 verbose unlock done using /Users/Baoyee/.npm/_locks/bit-mask-2cb67c9c5cdb0d06.lock for /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/node_modules/bit-mask
+270 verbose about to build /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs
+271 info build /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs
+272 info linkStuff chai-fs@0.1.0
+273 silly linkStuff chai-fs@0.1.0 has /Users/Baoyee/Codesmith/WebFlight/node_modules as its parent node_modules
+274 verbose linkBins chai-fs@0.1.0
+275 verbose linkMans chai-fs@0.1.0
+276 verbose rebuildBundles chai-fs@0.1.0
+277 verbose rebuildBundles [ 'bit-mask' ]
+278 info install chai-fs@0.1.0
+279 info postinstall chai-fs@0.1.0
+280 verbose readDependencies loading dependencies from /Users/Baoyee/Codesmith/WebFlight/package.json
+281 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/babel-eslint/package.json
+282 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/babel-preset-es2015/package.json
+283 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/babelify/package.json
+284 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/casperjs/package.json
+285 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai/package.json
+286 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-as-promised/package.json
+287 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs/package.json
+288 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/cheerio/package.json
+289 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/create-torrent/package.json
+290 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/electron-prebuilt/package.json
+291 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/electron-spawn/package.json
+292 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/expect/package.json
+293 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/express/package.json
+294 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/gulp/package.json
+295 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/gulp-mocha/package.json
+296 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/gulp-util/package.json
+297 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/jquery/package.json
+298 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/mocha/package.json
+299 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/nodemon/package.json
+300 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/parse-torrent/package.json
+301 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/path/package.json
+302 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/sha1/package.json
+303 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/socket.io/package.json
+304 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/standard/package.json
+305 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/webtorrent/package.json
+306 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/casperjs/package.json
+307 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/create-torrent/package.json
+308 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/electron/package.json
+309 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/electron-spawn/package.json
+310 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/gulp/package.json
+311 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/mocha/package.json
+312 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/nodemon/package.json
+313 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/parse-torrent/package.json
+314 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/standard/package.json
+315 verbose targetResolver reading package data from /Users/Baoyee/Codesmith/WebFlight/node_modules/.bin/webtorrent/package.json
+316 verbose already installed skipping chai@>= 1.6.1 < 2 /Users/Baoyee/Codesmith/WebFlight
+317 silly install resolved []
+318 verbose unlock done using /Users/Baoyee/.npm/_locks/chai-fs-e79d4a03ed937650.lock for /Users/Baoyee/Codesmith/WebFlight/node_modules/chai-fs
+319 verbose validateInstall loading /Users/Baoyee/Codesmith/WebFlight/package.json for validation
+320 verbose stack Error: The package chai@3.5.0 does not satisfy its siblings' peerDependencies requirements!
+320 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
+320 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:268:7
+320 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+320 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+320 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+320 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+320 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+320 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+320 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+320 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+321 verbose cwd /Users/Baoyee/Codesmith/WebFlight
+322 error Darwin 15.2.0
+323 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--save-dev" "chai-fs"
+324 error node v4.2.6
+325 error npm  v2.14.12
+326 error code EPEERINVALID
+327 error peerinvalid The package chai@3.5.0 does not satisfy its siblings' peerDependencies requirements!
+327 error peerinvalid Peer chai-as-promised@5.2.0 wants chai@>= 2.1.2 < 4
+327 error peerinvalid Peer chai-fs@0.1.0 wants chai@>= 1.6.1 < 2
+328 verbose exit [ 1, true ]

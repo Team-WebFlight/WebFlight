@@ -15,21 +15,55 @@ function WebFlight (options) {
   Object.keys(options).forEach((key) => {
     this[key] = options[key]
   })
-  this.count = 0
+
+  let fileNamesArr = Object.keys(this.routes).map((file) => {
+    return path.basename(file, '.html')
+  })
+
+  this.count = 0  // non-configurable
+  this.fileNames = fileNamesArr // non-configurable
+
+  this.wfPath = options.wfPath ? 'options.wfPath' : (__dirname + '/wfPath')  // default
+  this.wfRoute = options.wfRoute ? 'options.wfRoute' : ('/wfRoute')  // default
+
+  this.seedScript = options.seedScript  // default
+  ? options.seedScript
+  : path.join(__dirname, 'wfPath/js/wf-seed.js')
+
+  this.jsOutputDL = (() => {  // non-configurable
+    return fileNamesArr.map((file) => {
+      return `${this.wfPath}/js/${file}-download.js`
+    })
+  })()
+
+  this.htmlOutput = (() => {  // non-configurable
+    return fileNamesArr.map((file) => {
+      return `${this.wfPath}/wf-${file}.html`
+    })
+  })()
 }
 
 // options :: Object
-  // originalHtml: .html file to be rebuilt
-  // filesFolder: folder with files to be torrented
-  // filesRoute: path on the server for files
-  // jsOutputDL: location and name for webflight.js file
-  // jsOutputUL: location and name for file seeding torrents
-  // htmlOutput: location and name for rebuilt html file
-  // route: route to redirect
+  // siteUrl: String                (required)
+  // assetsPath: String|Array   (required)
+  // assetsRoute: String|Array  (required)
+  // wfPath: String             (optional - defaults to '/wfPath')
+  // wfRoute: String            (optional - defaults to '/wfRoute')
+  // seedScript: String         (optional - defaults to 'wf-seed.js')
+  // routes: Object             (required)
+
+  //  assetsPath: ''/['', ''],
+  //  assetsRoute: ''/['', ''],
+  //  wfPath: ''/Default(__dirname + '/wfPath'),
+  //  wfRoute: ''/Default('/wfRoute'),
+  //  seedScript: ''/Default('wf-seed.js'),
+  //  routes: {
+  //    '/about.html': 'path/to/about.html'
+  //  }
+
 WebFlight.prototype.start = function () {
   const originalHtmlString = stringifyHtml(this.originalHtml)
   const filesObj = makeFilesObj(this.filesFolder, this.filesRoute)
-
 
   hashFilesObj(filesObj)
     .then(writeJsDL.bind(null, this.jsOutputDL))

@@ -5,3 +5,4 @@ images
 jsconfig.json
 .DS_Store
 .eslintignore
+test/tiffany/test.js
