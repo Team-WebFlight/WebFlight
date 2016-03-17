@@ -12,17 +12,19 @@ const writeNewHtml = require('./lib/writeNewHtml')
 const botGenerator = require(('./src/botGenerator'))
 
 function WebFlight (options) {
+  //🎈are we putting all this info on the window?
   Object.keys(options).forEach((key) => {
     this[key] = options[key]
   })
 
   let fileNamesArr = Object.keys(this.routes).map((file) => {
     return path.basename(file, '.html')
-  })
+  }) 
 
   this.count = 0  // non-configurable
   this.fileNames = fileNamesArr // non-configurable
 
+ if(options.wfPath)
   this.wfPath = options.wfPath ? 'options.wfPath' : (__dirname + '/wfPath')  // default
   this.wfRoute = options.wfRoute ? 'options.wfRoute' : ('/wfRoute')  // default
 
@@ -62,17 +64,23 @@ function WebFlight (options) {
   //  }
 
 WebFlight.prototype.start = function () {
+  //originalHtmlString is going to be holding a long html string
+  //NOTE: stringifyHtml will be taking in either one path or an array of paths
   const originalHtmlString = stringifyHtml(this.originalHtml)
-  const filesObj = makeFilesObj(this.filesFolder, this.filesRoute)
 
+  //FILESFOLDER!!! is a path to a folder. What is FILESROUTE!!! (server routes). Files routes is either one path or an array of paths
+  const filesObj = makeFilesObj(this.filesFolder, this.filesRoute) // -> //filesObj = {[serverRoute]+🎈(Q about '/' in between these two things)[fileName]:{fileOnServer:[absolutepath]+[fileName]},
+                                                                  //                  '/images/kitten.jpg':{fileOnServer: 'projectName/images/kitten.jpg'},
+                                                                  //                  '/images/puppy.jpg':{fileOnServer: 'projectName/images/puppy.jpg'}
+                                                                  //
   hashFilesObj(filesObj)
+
     .then(writeJsDL.bind(null, this.jsOutputDL))
     .then(writeJsUL.bind(null, this.jsOutputUL))
     .then(replaceHtml.bind(null, originalHtmlString, path.basename(this.jsOutputDL)))
     .then(writeNewHtml.bind(null, this.htmlOutput))
     .then(botGenerator.bind(null, this))
 }
-
 WebFlight.prototype.redirect = function (req, res, next) {
   const destination = req.originalUrl
 
