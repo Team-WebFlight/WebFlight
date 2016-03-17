@@ -3,8 +3,8 @@ const assert = require('assert')
 const WebFlight = require('../..')
 const path = require('path')
 const fs = require('fs')
-// const express = require('express')
-// const app = express()
+const express = require('express')
+const app = express()
 const stringifyHtml = require('../../lib/stringifyHtml')
 const makeFilesObj = require('../../lib/makeFilesObj')
 const hashFilesObj = require('../../lib/hashFilesObj')
@@ -22,11 +22,20 @@ const webflightOptions = {
 
 var wf = new WebFlight({
   routes: {
-    '/about.html': 'users/baoyee/codesmith/about.html',
-    '/index.html': 'users/baoyee/codesmith/index.html',
-    '/info.html': 'users/baoyee/codesmith/info.html'
+    '/aboutroute.html': 'users/baoyee/codesmith/about.html',
+    '/indexroute.html': 'users/baoyee/codesmith/index.html',
+    '/inforoute.html': 'users/baoyee/codesmith/info.html'
   },
-  url: 'http://www.google.com'
+  siteUrl: 'http://www.google.com'
+})
+
+app.listen(3000, () => {
+  // console.log('listening on 3000')
+})
+
+app.get('/', (req, res) => {
+  console.error('trying error')
+  // res.sendfile(console.error('hello'))
 })
 
 console.log(wf)
