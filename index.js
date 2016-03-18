@@ -100,13 +100,7 @@ WebFlight.prototype.init = function () {
   const htmlStrings = stringifyHtmlFiles(htmlFiles)
   const filesObj = makeFilesObj(this.assetsPath, this.assetsRoute)
 
-  //FILESFOLDER!!! is a path to a folder. What is FILESROUTE!!! (server routes). Files routes is either one path or an array of paths
-  const filesObj = makeFilesObj(this.filesFolder, this.filesRoute) // -> //filesObj = {[serverRoute]+🎈(Q about '/' in between these two things)[fileName]:{fileOnServer:[absolutepath]+[fileName]},
-                                                                  //                  '/images/kitten.jpg':{fileOnServer: 'projectName/images/kitten.jpg'},
-                                                                  //                  '/images/puppy.jpg':{fileOnServer: 'projectName/images/puppy.jpg'}
-                                                                  //
   hashFilesObj(filesObj)
-
     .then(writeJsUL.bind(null, this.seedScript, this.siteUrl, this.stopCount))
     .then(replaceHtml.bind(null, htmlStrings, htmlFiles))
     .then(writeNewHtml.bind(null, this.htmlOutput))
