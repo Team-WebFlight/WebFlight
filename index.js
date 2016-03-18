@@ -31,7 +31,7 @@ function WebFlight (options, serverRoot) {
   })
 
   let fileNamesArr = Object.keys(this.routes).map((file) => {
-    return path.basename(this.routes[file], '.html')
+    return path.basename(this.routes[file])
   })
 
   this.count = 0  // non-configurable
@@ -53,17 +53,14 @@ function WebFlight (options, serverRoot) {
   ? options.seedScript
   : path.join(this.wfPath, 'js/wf-seed.js')
 
-  this.jsOutputDL = (() => {  // non-configurable
-    return fileNamesArr.map((file) => {
-      return `${this.wfPath}/js/${file}-download.js`
-    })
-  })()
+  this.jsOutputDL = fileNamesArr.map((file) => { // non-configurable
+    file = path.basename(this.routes[file], '.html')
+    return `${this.wfPath}/js/${file}-download.js`
+  })
 
-  this.htmlOutput = (() => {  // non-configurable
-    return fileNamesArr.map((file) => {
-      return `${this.wfPath}/wf-${file}.html`
-    })
-  })()
+  this.htmlOutput = fileNamesArr.map((file) => { // non-configurable
+    return `${this.wfPath}/wf-${file}`
+  })
 
   this.userCount = options.userCount ? options.userCount : 5  // default (redirect)
   this.prepCount = Math.floor(this.userCount * 0.75)  // non-configurable (start bots)
@@ -96,7 +93,9 @@ function WebFlight (options, serverRoot) {
   //  seedScript: ''/Default('wf-seed.js'),
 
 WebFlight.prototype.init = function () {
-  const htmlFiles = Object.keys(this.routes).map((route) => this.routes[route])
+  const htmlFiles = Object.keys(this.routes).map((route) => {
+    return this.routes[route]
+  })
   const htmlStrings = stringifyHtmlFiles(htmlFiles)
   const filesObj = makeFilesObj(this.assetsPath, this.assetsRoute)
 
