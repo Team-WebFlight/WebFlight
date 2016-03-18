@@ -1,15 +1,13 @@
 /* global describe, it */
 'use strict'
-
-// Testing requirements
 const path = require('path')
 const chai = require('chai')
 let assert = chai.assert
 let expect = chai.expect
-// let should = chai.should
-const chaiAsPromised = require('chai-as-promised')
+
+
 const chaifs = require('chai-fs')
-chai.use(chaiAsPromised)
+// chai.use(chaiAsPromised)
 chai.use(chaifs)
 
 // Functions being tested
@@ -18,7 +16,6 @@ const makeFilesObj = require('../../lib/makeFilesObj')
 const hashFilesObj = require('../../lib/hashFilesObj')
 const writeJsDL = require('../../lib/writeJsDL')
 const writeJsUL = require('../../lib/writeJsUL')
-const replaceHtml = require('../../lib/replaceHtml')
 
 // Testing input
 const wfOptions = {
@@ -34,11 +31,7 @@ const wfOptions = {
 // Testing variables
 const stringifiedHtml = stringifyHtml(path.join(__dirname, 'index.html'))
 const filesObj = makeFilesObj(wfOptions.filesFolder, wfOptions.filesRoute)
-const fileNames = Object.keys(filesObj)
 const hashedObjFunc = hashFilesObj(filesObj)
-// let hashedObj = hashedObjFunc.then((hashedObject) => {
-//   return hashedObject
-// })
 
 // Testing begins
 describe('stringifyHtml', () => {
@@ -55,14 +48,39 @@ describe('stringifyHtml', () => {
 })
 
 // should work for arrays, if array, find number of route/file iterations and make sure number of keys matches
-describe('makeFilesObj', () => {
-  it('expect output to have file names as keys', () => {
-    fileNames.forEach(function (file) {
-      expect(filesObj).to.have.property(file)
-    })
+describe('makeFilesObj', function () {
+  it('should return array of files in directory', function () {
+    const array = makeFilesObj(path.join(__dirname, '/test-dir'), 'files/')
+
+    assert.deepEqual({
+      'files/index.html': {fileOnServer: `${__dirname}/test-dir/index.html`},
+      'files/index2.html': {fileOnServer: `${__dirname}/test-dir/index2.html`}
+    }, array)
   })
-  it('for arrays, check to see if all route/file iterations have been created', () => {
-    //
+  it('should work with array of directories and single route', function () {
+    const filesObj = makeFilesObj([path.join(__dirname, '/test-dir2'), path.join(__dirname, '/test-dir')], '/files')
+
+    assert.deepEqual({
+      'files/webtorrent-breaks-if-folder-is-empty': {fileOnServer: `${__dirname}/test-dir2/webtorrent-breaks-if-folder-is-empty`},
+      'files/t.txt': {fileOnServer: `${__dirname}/test-dir2/t.txt`},
+      'files/index.html': {fileOnServer: `${__dirname}/test-dir/index.html`},
+      'files/index2.html': {fileOnServer: `${__dirname}/test-dir/index2.html`}
+    }, filesObj)
+  })
+
+  it('should work with array of directories and array of routes', function () {
+    const filesObj = makeFilesObj([path.join(__dirname, '/test-dir2'), path.join(__dirname, '/test-dir')], ['/files', '/img'])
+
+    assert.deepEqual({
+      'files/webtorrent-breaks-if-folder-is-empty': {fileOnServer: `${__dirname}/test-dir2/webtorrent-breaks-if-folder-is-empty`},
+      'files/t.txt': {fileOnServer: `${__dirname}/test-dir2/t.txt`},
+      'files/index.html': {fileOnServer: `${__dirname}/test-dir/index.html`},
+      'files/index2.html': {fileOnServer: `${__dirname}/test-dir/index2.html`},
+      'img/webtorrent-breaks-if-folder-is-empty': {fileOnServer: `${__dirname}/test-dir2/webtorrent-breaks-if-folder-is-empty`},
+      'img/t.txt': {fileOnServer: `${__dirname}/test-dir2/t.txt`},
+      'img/index.html': {fileOnServer: `${__dirname}/test-dir/index.html`},
+      'img/index2.html': {fileOnServer: `${__dirname}/test-dir/index2.html`}
+    }, filesObj)
   })
 })
 
@@ -73,6 +91,39 @@ describe('hashFilesObj', () => {
       for (var info in hashedObj) {
         expect(hashedObj[info]).to.have.all.keys('hash', 'magnet', 'fileOnServer')
       }
+    })
+  })
+  it('should return a promise', () => {
+    assert.equal(hashFilesObj(filesObj).constructor, Promise)
+  })
+  it('promise should return an object', (done) => {
+    hashFilesObj(filesObj).then((result) => {
+      assert.equal(result.constructor, Object)
+      done()
+    })
+  })
+  it('every property on object should be an object', (done) => {
+    hashFilesObj(filesObj).then((result) => {
+      assert.equal(Object.keys(result).every((key) => {
+        return result[key].constructor === Object
+      }), true)
+      done()
+    })
+  })
+  it('every property object should have a hash property', (done) => {
+    hashFilesObj(filesObj).then((result) => {
+      assert.equal(Object.keys(result).every((key) => {
+        return result[key].hasOwnProperty('hash')
+      }), true)
+      done()
+    })
+  })
+  it('every property object should have a magnet property', (done) => {
+    hashFilesObj(filesObj).then((result) => {
+      assert.equal(Object.keys(result).every((key) => {
+        return result[key].hasOwnProperty('magnet')
+      }), true)
+      done()
     })
   })
 })
@@ -121,26 +172,3 @@ describe('writeJsUL', () => {
     })
   })
 })
-// don't check if ALL src tags are removed (e.g. imgur)
-describe('replaceHtml', () => {
-  it('WebTorrent and WebFlight scripts should be appended to page', () => {
-    return hashedObjFunc.then((hashedObj) => {
-      let replacedString = replaceHtml(stringifiedHtml, wfOptions.htmlOutput, hashedObj))
-    })
-  })
-  it('html should not contain any source attributes', () => {
-  })
-  it('html should contain all file hashes as class names', () => {
-    // might want to include cheerio to search through document
-  })
-})
-//
-// describe('writeNewHtml', () => {
-//   it('', () => {
-//   })
-// })
-//
-// describe('botGenerator', () => {
-//   it('', () => {
-//   })
-// })

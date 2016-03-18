@@ -3,7 +3,6 @@ const app = express()
 
 const path = require('path')
 const WebFlight = require('../..')
-
 const wfObj = {
   originalHtml: path.join(__dirname, 'index.html'),
   filesFolder: path.join(__dirname, 'img'),
@@ -22,23 +21,23 @@ wf.start()
 app.use(wf.redirect.bind(wf))
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
+  res.sendFile(path.join(__dirname, '/index.html'))
 })
 
 app.get('/img/*', (req, res) => {
-  res.sendFile(__dirname + req.url)
+  res.sendFile(path.join(__dirname, req.url))
 })
 
 app.get('/birdVid.ogv', (req, res) => {
-  res.sendFile(__dirname + '/videos/birdVid.ogv')
+  res.sendFile(path.join(__dirname, '/videos/birdVid.ogv'))
 })
 
 app.get('/wf', (req, res) => {
-  res.sendFile(__dirname + '/wf/index.html')
+  res.sendFile(path.join(__dirname, '/wf/index.html'))
 })
 
 app.get('/webflight.js', (req, res) => {
-  res.sendFile(__dirname + '/webflight.js')
+  res.sendFile(path.join(__dirname, '/webflight.js'))
 })
 
 app.listen(3000)

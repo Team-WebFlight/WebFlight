@@ -4,19 +4,24 @@
   "description": "Turns a server into a seed for peer-to-peer content delivery",
   "main": "index.js",
   "scripts": {
-    "test": "standard && mocha test/test.js",
-    "start": "nodemon server/server.js",
-    "test-start": "nodemon test/test-website/server.js"
+    "test": "standard && mocha test/tests/wfstart.js",
+    "start": "node server/server.js",
+    "test-start": "node test/test-website/server.js"
   },
   "standard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "ignore": [
+      "/test/tests/webflight.js",
+      "/test/tests/wf/seedUL.js",
+      "/test/test-website/"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Team-Webflight/WebFlight.git"
   },
-  "author": "Carol, Cory, Jared, Tiffany",
-  "license": "ISC",
+  "author": "Team WebFlight",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Team-WebFlight/WebFlight/issues"
   },
@@ -41,9 +46,7 @@
     "babelify": "^7.2.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
-    "gulp": "^3.9.1",
-    "gulp-mocha": "^2.2.0",
-    "gulp-util": "^3.0.7",
+    "chai-fs": "^0.1.0",
     "standard": "^6.0.8"
   }
 }

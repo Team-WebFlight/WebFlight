@@ -6,3 +6,4 @@ jsconfig.json
 .DS_Store
 .eslintignore
 test/tiffany/test.js
+npm-debug.log

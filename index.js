@@ -27,7 +27,7 @@ function WebFlight (options) {
 
   this.count = 0  // non-configurable
   this.fileNames = fileNamesArr  // non-configurable
-  this.wfPath = options.wfPath ? options.wfPath : (__dirname + '/wfPath')  // default
+  this.wfPath = options.wfPath ? options.wfPath : (path.join(__dirname, '/wfPath'))
   this.wfRoute = options.wfRoute ? options.wfRoute : ('/wfRoute')  // default
 
 
