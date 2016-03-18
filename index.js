@@ -17,7 +17,6 @@ function WebFlight (options, serverRoot) {
     this[key] = options[key]
   })
 
-
   let fileNamesArr = Object.keys(this.routes).map((file) => {
     return path.basename(this.routes[file], '.html')
   })
@@ -63,6 +62,7 @@ function WebFlight (options, serverRoot) {
   if (!this.routes) console.error('Error: WebFlight options object requires "routes" property')
 }
 
+
 // options :: Object
   // siteUrl: String            (required)
   // assetsPath: String|Array   (required)
@@ -81,7 +81,6 @@ function WebFlight (options, serverRoot) {
   //  wfPath: ''/Default(__dirname + '/wfPath'),
   //  wfRoute: ''/Default('/wfRoute'),
   //  seedScript: ''/Default('wf-seed.js'),
-
 
 WebFlight.prototype.init = function () {
   const htmlFiles = Object.keys(this.routes).map((route) => this.routes[route])
