@@ -1,8 +1,8 @@
 const spawn = require('electron-spawn')
 
-function botGenerator (options) {
+function botGenerator (seedScript) {
   console.log('starting bot 🤖')
-  const electron = spawn(options.jsOutputUL, {
+  const electron = spawn(seedScript, {
     detached: true
   })
   /**

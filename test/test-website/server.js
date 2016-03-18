@@ -3,41 +3,39 @@ const app = express()
 
 const path = require('path')
 const WebFlight = require('../..')
+
 const wfObj = {
-  originalHtml: path.join(__dirname, 'index.html'),
-  filesFolder: path.join(__dirname, 'img'),
-  filesRoute: 'img/',
-  jsOutputDL: path.join(__dirname, 'webflight.js'),
-  jsOutputUL: path.join(__dirname, 'wf/seedUL.js'),
-  htmlOutput: path.join(__dirname, 'wf/index.html'),
-  route: '/',
-  redirectTo: '/wf/'
+  siteUrl: 'http://localhost:3000',
+  assetsPath: [path.join(__dirname, 'img'), path.join(__dirname, 'videos')],
+  assetsRoute: ['bird-imgs/', 'bird-videos/', 'other-imgs/'],
+  routes: {
+    '/': path.join(__dirname, 'index.html'),
+    '/how.html': path.join(__dirname, 'how.html')
+  }
 }
 
-const wf = new WebFlight(wfObj)
+const wf = new WebFlight(wfObj, __dirname)
 
-wf.start()
+wf.init()
 
-app.use(wf.redirect.bind(wf))
+app.use(wf.watch.bind(wf))
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/index.html'))
 })
 
-app.get('/img/*', (req, res) => {
-  res.sendFile(path.join(__dirname, req.url))
+app.get('/bird-imgs/:pic', (req, res) => {
+  res.sendFile(path.join(__dirname, 'img', req.params.pic))
 })
 
-app.get('/birdVid.ogv', (req, res) => {
-  res.sendFile(path.join(__dirname, '/videos/birdVid.ogv'))
+app.get('/other-imgs/:pic', (req, res) => {
+  res.sendFile(path.join(__dirname, 'img', req.params.pic))
 })
 
-app.get('/wf', (req, res) => {
-  res.sendFile(path.join(__dirname, '/wf/index.html'))
+app.get('/bird-videos/:video', (req, res) => {
+  res.sendFile(path.join(__dirname, 'videos', req.params.video))
 })
 
-app.get('/webflight.js', (req, res) => {
-  res.sendFile(path.join(__dirname, '/webflight.js'))
-})
+
 
 app.listen(3000)

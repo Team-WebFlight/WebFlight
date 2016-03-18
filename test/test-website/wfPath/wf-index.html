@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bird Types</title>
+    <style media="screen">
+      body {
+        text-align: center;
+        background-color: orangered;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Just a website about some birds I like</h1>
+
+    <div class="birdPic">
+      <h2>Here is a bird I like</h2>
+      <img alt="a bird" height="900" width="1097" class="13991928788f049b05a6260d62e1d743571fba75">
+    </div>
+
+    <div class="birdPic">
+      <h2>Here is a bird I <strong>really</strong>like</h2>
+      <img alt="a bird" height="900" width="1097" class="a6022e9ea276cf01325d9ff68b6d77c2d6a74a78">
+    </div>
+
+    <div class="birdVid">
+      <h2>A movie about some birds</h2>
+      <div class="856da85f23ba33ef4a81157bd0e3d98ef6f35a9d"></div>
+    </div>
+    <div class="birdVid">
+      <h2>A movie about some birds</h2>
+      <video src="bird-videos/birdVid.ogv" controls autoplay>
+
+      </video>
+    </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"></script><script src="https://code.jquery.com/jquery-2.2.2.js"></script><script> 
+var client = new WebTorrent();
+
+
+    client.add('magnet:?xt=urn:btih:13991928788f049b05a6260d62e1d743571fba75&dn=bird1.jpg&tr=udp://exodus.desync.com:6969&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://tracker.internetwarriors.net:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=udp://tracker.openbittorrent.com:80&tr=wss://tracker.btorrent.xyz&tr=wss://tracker.openwebtorrent.com&tr=wss://tracker.webtorrent.io', function(torrent) {
+      var file = torrent.files[0];
+      var elementsArray = [].slice.call(document.getElementsByClassName('13991928788f049b05a6260d62e1d743571fba75'));
+
+      if (elementsArray.length) {
+        elementsArray.forEach(function(element) {
+          file.renderTo(element)
+        });
+      }
+    });
+
+    client.add('magnet:?xt=urn:btih:a6022e9ea276cf01325d9ff68b6d77c2d6a74a78&dn=bird2.jpg&tr=udp://exodus.desync.com:6969&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://tracker.internetwarriors.net:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=udp://tracker.openbittorrent.com:80&tr=wss://tracker.btorrent.xyz&tr=wss://tracker.openwebtorrent.com&tr=wss://tracker.webtorrent.io', function(torrent) {
+      var file = torrent.files[0];
+      var elementsArray = [].slice.call(document.getElementsByClassName('a6022e9ea276cf01325d9ff68b6d77c2d6a74a78'));
+
+      if (elementsArray.length) {
+        elementsArray.forEach(function(element) {
+          file.renderTo(element)
+        });
+      }
+    });
+
+      client.add('magnet:?xt=urn:btih:856da85f23ba33ef4a81157bd0e3d98ef6f35a9d&dn=birdVid.mp4&tr=udp://exodus.desync.com:6969&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://tracker.internetwarriors.net:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=udp://tracker.openbittorrent.com:80&tr=wss://tracker.btorrent.xyz&tr=wss://tracker.openwebtorrent.com&tr=wss://tracker.webtorrent.io', function(torrent) {
+        var file = torrent.files[0];
+        var elementsArray = [].slice.call(document.getElementsByClassName('856da85f23ba33ef4a81157bd0e3d98ef6f35a9d'));
+
+        if (elementsArray.length) {
+          elementsArray.forEach(function(element) {
+            file.getBlobURL(function(err, url) {
+              $(element).replaceWith($("<video autoplay src='" + url + "' controls></video>"))
+            })
+          });
+        }
+      });</script></body>
+</html>

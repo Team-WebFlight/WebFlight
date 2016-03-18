@@ -1,10 +1,10 @@
 /* global describe, it */
 'use strict'
 const path = require('path')
+const cheerio = require('cheerio')
 const chai = require('chai')
 let assert = chai.assert
 let expect = chai.expect
-
 
 const chaifs = require('chai-fs')
 // chai.use(chaiAsPromised)
@@ -16,6 +16,7 @@ const makeFilesObj = require('../../lib/makeFilesObj')
 const hashFilesObj = require('../../lib/hashFilesObj')
 const writeJsDL = require('../../lib/writeJsDL')
 const writeJsUL = require('../../lib/writeJsUL')
+const replaceHtml = require('../../lib/replaceHtml')
 
 // Testing input
 const wfOptions = {
@@ -30,6 +31,7 @@ const wfOptions = {
 
 // Testing variables
 const stringifiedHtml = stringifyHtml(path.join(__dirname, 'index.html'))
+// const stringifiedHtmlArr = stringifyHtml([path.join(__dirname, 'index.html'), path.join(__dirname, 'about.html')])
 const filesObj = makeFilesObj(wfOptions.filesFolder, wfOptions.filesRoute)
 const hashedObjFunc = hashFilesObj(filesObj)
 
@@ -41,16 +43,14 @@ describe('stringifyHtml', () => {
   it('should return a string if single input', () => {
     expect(stringifiedHtml).to.be.a('string')
   })
-  it('should return an array if multiple outputs', () => {
-    // expect output to be an array
-    // (create a separate test case)
+  it('should return an array if multiple inputs', () => {
+    // expect(stringifiedHtmlArr).to.be.a('array')
   })
 })
 
-// should work for arrays, if array, find number of route/file iterations and make sure number of keys matches
 describe('makeFilesObj', function () {
   it('should return array of files in directory', function () {
-    const array = makeFilesObj(path.join(__dirname, '/test-dir'), 'files/')
+    const array = makeFilesObj(path.join(__dirname + '/test-dir'), 'files/')
 
     assert.deepEqual({
       'files/index.html': {fileOnServer: `${__dirname}/test-dir/index.html`},
@@ -169,6 +169,34 @@ describe('writeJsUL', () => {
       for (let file in hashedObj) {
         expect(ULFileString).to.include(hashedObj[file].fileOnServer)
       }
+    })
+  })
+})
+
+describe('replaceHtml', () => {
+  it('WebTorrent and WebFlight scripts should be appended to page', () => {
+    return hashedObjFunc.then((hashedObj) => {
+      let replacedString = replaceHtml(stringifiedHtml, wfOptions.htmlOutput, hashedObj)
+      expect(replacedString).to.include('webtorrent.min.js')
+      // expect(replacedString).to.include('webflight.js')
+      expect(replacedString).to.not.include('undefined')
+    })
+  })
+  it('content with hash classes should not contain source attributes', () => {
+    return hashedObjFunc.then((hashedObj) => {
+      let replacedString = replaceHtml(stringifiedHtml, wfOptions.htmlOutput, hashedObj)
+      const $ = cheerio.load(replacedString)
+      const bird1Tag = $(`.${hashedObj['img/bird1.jpg'].hash}`).attr('src')
+      const bird2Tag = $(`.${hashedObj['img/bird2.jpg'].hash}`).attr('src')
+      expect(bird1Tag).to.be.an('undefined')
+      expect(bird2Tag).to.be.an('undefined')
+    })
+  })
+  it('html should contain all file hashes as class names', () => {
+    return hashedObjFunc.then((hashedObj) => {
+      let replacedString = replaceHtml(stringifiedHtml, wfOptions.htmlOutput, hashedObj)
+      expect(replacedString).to.include(hashedObj['img/bird1.jpg'].hash)
+      expect(replacedString).to.include(hashedObj['img/bird2.jpg'].hash)
     })
   })
 })
