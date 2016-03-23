@@ -1,4 +1,5 @@
 var totalSeeds = 4;
+console.log('xurls', undefined)
 var http = require("http");
  var WebTorrent = require("webtorrent");
 var client = new WebTorrent();
@@ -42,4 +43,4 @@ var client = new WebTorrent();
         }
       });
     });
-  }, 60000);
+  }, 600000);
