@@ -30,6 +30,8 @@ function WebFlight (options, serverRoot) {
     this[key] = options[key]
   })
 
+  //.map is taking in the key in the routes obj. the key is a serverRoute the client gives us. the argument
+  //would be better names serverroute or something to the like instead of file
   let fileNamesArr = Object.keys(this.routes).map((file) => {
     return path.basename(this.routes[file])
   })
@@ -38,15 +40,16 @@ function WebFlight (options, serverRoot) {
   this.active = false // non-configurable
   this.fileNames = fileNamesArr // non-configurable
 
+  //wfPath vs wfRoute
   this.wfPath = options.wfPath ? options.wfPath : path.join(serverRoot, '/wfPath')  // default
 
-  // TODO: existsSync is deprecated, need alternative
+  // TODO: existsSync is deprecated, need alternative- exists return boolena if file exists or not
   if (!fs.existsSync(this.wfPath)) {
     fs.mkdirSync(this.wfPath)
     fs.mkdirSync(path.join(this.wfPath, 'js'))
   }
 
-  this.wfRoute = options.wfRoute ? options.wfRoute : ('/wfRoute')  // default
+  this.wfRoute = options.wfRoute ? options.wfRoute : ('/wfRoute')  // default - where we're placing...
 
 
   this.seedScript = options.seedScript  // default
@@ -54,9 +57,21 @@ function WebFlight (options, serverRoot) {
   : path.join(this.wfPath, 'js/wf-seed.js')
 
   this.jsOutputDL = fileNamesArr.map((file) => { // non-configurable
-    file = path.basename(this.routes[file], '.html')
-    return `${this.wfPath}/js/${file}-download.js`
-  })
+    //is the file on the the fileNamesArr html
+    if (path.extname(this.routes[file]) == '.html'){
+      file = path.basename(this.routes[file], '.html')
+      return `${this.wfPath}/js/${file}-download.js`
+    //if it's ejs
+  } else if (path.extname(this.routes[file]) == '.ejs'){
+      file = path.basename(this.routes[file], '.ejs')
+      //🎈Double check that it's -download.js not .ejs
+      return `${this.wfPath}/js/${file}-download.js`
+
+    }
+    //the old code assumes .html files
+    // file = path.basename(this.routes[file], '.html')
+    // return `${this.wfPath}/js/${file}-download.js`
+  }) // ->[serverRoute/wfPath/js/prof-download.js]
 
   this.htmlOutput = fileNamesArr.map((file) => { // non-configurable
     return `${this.wfPath}/wf-${file}`
