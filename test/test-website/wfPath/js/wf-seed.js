@@ -4,28 +4,28 @@ var http = require("http");
 var client = new WebTorrent();
 
 
-      client.seed('/Users/Baoyee/Codesmith/WebFlight/test/test-website/img/bird1.jpg', function(torrent) {
+      client.seed('/Users/carolgonzalez/Desktop/WebFlight/test/test-website/img/bird1.jpg', function(torrent) {
         --totalSeeds;
         console.log('🐣 ', torrent.files[0].name, ' now seeding at hash ', torrent.infoHash);
 
         if (!totalSeeds) console.log("🕊 all seeds active")
       });
 
-      client.seed('/Users/Baoyee/Codesmith/WebFlight/test/test-website/img/bird2.jpg', function(torrent) {
+      client.seed('/Users/carolgonzalez/Desktop/WebFlight/test/test-website/img/bird2.jpg', function(torrent) {
         --totalSeeds;
         console.log('🐣 ', torrent.files[0].name, ' now seeding at hash ', torrent.infoHash);
 
         if (!totalSeeds) console.log("🕊 all seeds active")
       });
 
-      client.seed('/Users/Baoyee/Codesmith/WebFlight/test/test-website/img/google.png', function(torrent) {
+      client.seed('/Users/carolgonzalez/Desktop/WebFlight/test/test-website/img/google.png', function(torrent) {
         --totalSeeds;
         console.log('🐣 ', torrent.files[0].name, ' now seeding at hash ', torrent.infoHash);
 
         if (!totalSeeds) console.log("🕊 all seeds active")
       });
 
-      client.seed('/Users/Baoyee/Codesmith/WebFlight/test/test-website/videos/birdVid.mp4', function(torrent) {
+      client.seed('/Users/carolgonzalez/Desktop/WebFlight/test/test-website/videos/birdVid.mp4', function(torrent) {
         --totalSeeds;
         console.log('🐣 ', torrent.files[0].name, ' now seeding at hash ', torrent.infoHash);
 
