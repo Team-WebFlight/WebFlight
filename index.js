@@ -81,7 +81,7 @@ function WebFlight (options, serverRoot) {
   this.prepCount = Math.floor(this.userCount * 0.75)  // non-configurable (start bots)
   this.stopCount = Math.floor(this.userCount * 0.50)  // non-configurable (kill bots, redirect back)
 
-  console.log('wfobj', this)
+  🎈console.log('wfobj', this)
 
   if (!this.siteUrl) console.error('Error: WebFlight options object requires "siteUrl" property')
   if (!this.assetsPath) console.error('Error: WebFlight options object requires "assetsPath" property')
@@ -109,10 +109,14 @@ function WebFlight (options, serverRoot) {
   //  wfRoute: ''/Default('/wfRoute'),
   //  seedScript: ''/Default('wf-seed.js'),
 
+//
 WebFlight.prototype.init = function () {
+  //htmlFiles name has to be changed now that handling ejs
   const htmlFiles = Object.keys(this.routes).map((route) => {
     return this.routes[route]
-  })
+  }) // -> [client/profile/prof.ejs]
+
+  //htmlStrings name to be updated as well as any variable name/function name that alludes to only HTML being handled
   const htmlStrings = stringifyHtmlFiles(htmlFiles)
   const filesObj = makeFilesObj(this.assetsPath, this.assetsRoute)
 
