@@ -66,6 +66,8 @@ function WebFlight (options, serverRoot) {
   this.prepCount = Math.floor(this.userCount * 0.75)  // non-configurable (start bots)
   this.stopCount = Math.floor(this.userCount * 0.50)  // non-configurable (kill bots, redirect back)
 
+  console.log('wfobj', this)
+
   if (!this.siteUrl) console.error('Error: WebFlight options object requires "siteUrl" property')
   if (!this.assetsPath) console.error('Error: WebFlight options object requires "assetsPath" property')
   if (!this.assetsRoute) console.error('Error: WebFlight options object requires "assetsRoute" property')
@@ -126,9 +128,9 @@ WebFlight.prototype.watch = function (req, res, next) {
   const destination = req.originalUrl
 
   if (path.extname(destination) === '.html' || path.extname(destination) === '') {
-    console.log(++this.count, 'entering')
+    ++this.count
 
-    setTimeout(function () { console.log(--this.count, 'exiting') }.bind(this), 10000)
+    setTimeout(function () { --this.count }.bind(this), 20000)
   }
 
   if (destination === '/count.check.4wf') return res.send({count: this.count})
