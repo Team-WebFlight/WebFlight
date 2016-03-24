@@ -84,7 +84,7 @@ function WebFlight (options, serverRoot) {
   this.stopCount = Math.floor(this.userCount * 0.50)  // non-configurable (kill bots, redirect back)
 
   this.statusBar = options.statusBar || true // default
-  console.log('wfobj', this)
+  //console.log('wfobj', this)
 
   if (!this.siteUrl) console.error('Error: WebFlight options object requires "siteUrl" property')
   if (!this.assetsPath) console.error('Error: WebFlight options object requires "assetsPath" property')
@@ -128,7 +128,7 @@ WebFlight.prototype.init = function () {
     // --BELOW: the new script to add items
     .then(addStatusBar.bind(null))
     .then(writeNewHtml.bind(null, this.htmlOutput))
-    
+
   } else { // BELOW: previous version
     const htmlFiles = Object.keys(this.routes).map((route) => {
       return this.routes[route]
