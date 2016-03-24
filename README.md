@@ -34,6 +34,7 @@ wf.init()
 <br>```wfRoute``` - (optional) The route that retrieves WebFlight files
 <br>```seedScript``` - (optional) The script that will initialize seeding your assets so they're ready to be downloaded by users after the **userCount** threshold is passed
 <br>`path` - The root path on your server
+<br>`statusBar` - Dropdown element that will appear on your website that shows users what is being seeded
 
 ```
 {
@@ -44,7 +45,8 @@ wf.init()
   userCount: Number           // Optional - defaults to 10
   wfPath: String              // Optional - defaults to '/wfPath'
   wfRoute: String             // Optional - defaults to '/wfRoute'
-  seedScript: String          // Optional = defaults to 'wf-seed.js'
+  seedScript: String          // Optional - defaults to 'wf-seed.js'
+  statusBar: Boolean          // Optional - defaults to true
 }
 ```
 

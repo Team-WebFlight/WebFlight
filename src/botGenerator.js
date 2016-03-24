@@ -1,3 +1,7 @@
+var Xvfb = require('xvfb')
+var xvfb = new Xvfb()
+xvfb.startSync()
+
 const spawn = require('electron-spawn')
 
 function botGenerator (seedScript) {
@@ -13,7 +17,14 @@ function botGenerator (seedScript) {
   *  console.error('error', data.toString())
   * })
   */
+
+  electron.stderr.on('data', function (data) {
+    console.error('error', data.toString())
+  })
   electron.stdout.on('data', function (data) {
+    // ends xvfb process if bots stop
+    if (data.includes('going offline')) xvfb.stopSync()
+
     console.log(data.toString())
   })
 }

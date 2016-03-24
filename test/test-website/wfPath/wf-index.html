@@ -74,5 +74,18 @@ var client = new WebTorrent();
             })
           });
         }
-      });</script></body>
+      });</script><div id="webflight-loading-ui" style="position: absolute; top: 0; right: 0;">
+        <div id="webflight-open-button" style="display: block; float: right; height: 20px; width: 280px; padding: 10px; text-align: center; background: #728BAC; color: white; cursor: pointer; font-family: sans-serif"><strong>WebFlight Status</strong></div>
+        <div id="webflight-seed" style="clear:both; height: 300px; width: 270px; background: white; padding: 15px; text-align: left; display: none; font-family: sans-serif;">You are downloading and seeding the following files: <div style="font-family: sans-serif"><br><br><strong>&apos;bird1.jpg&apos;</strong> at hash: <span style="font-size: 12px; font-weight: bold;"><br>13991928788f049b05a6260d62e1d743571fba75</span></div><div style="font-family: sans-serif"><br><br><strong>&apos;bird2.jpg&apos;</strong> at hash: <span style="font-size: 12px; font-weight: bold;"><br>a6022e9ea276cf01325d9ff68b6d77c2d6a74a78</span></div><div style="font-family: sans-serif"><br><br><strong>&apos;birdVid.mp4&apos;</strong> at hash: <span style="font-size: 12px; font-weight: bold;"><br>856da85f23ba33ef4a81157bd0e3d98ef6f35a9d</span></div></div>
+      </div>
+      <script>
+      $(document).ready(function() {
+        $('#webflight-close').click(function() {
+          $('#webflight-open-button, #webflight-close, #webflight-seed').hide();
+        })
+        $('#webflight-open-button').click(function() {
+          $('#webflight-seed').slideToggle();
+        })
+      })
+    </script></body>
 </html>

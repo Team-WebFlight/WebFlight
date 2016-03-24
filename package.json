@@ -1,6 +1,6 @@
 {
   "name": "webflight",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Turns a server into a seed for peer-to-peer content delivery",
   "main": "index.js",
   "scripts": {
@@ -40,7 +40,11 @@
     "parse-torrent": "^5.7.3",
     "sha1": "^1.1.1",
     "webtorrent": "^0.82.1",
+<<<<<<< HEAD
     "ejs": "^2.4.1"
+=======
+    "xvfb": "^0.2.3"
+>>>>>>> af350241f15a6ceed88a292acd103916d88d4dde
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.6.0",
