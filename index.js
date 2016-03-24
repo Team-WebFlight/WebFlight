@@ -67,7 +67,6 @@ function WebFlight (options, serverRoot) {
     //if it's ejs
   } else if (path.extname(this.routes[file]) == '.ejs'){
       file = path.basename(this.routes[file], '.ejs')
-      //🎈Double check that it's -download.js not .ejs
       return `${this.wfPath}/js/${file}-download.js`
 
     }
@@ -124,12 +123,12 @@ WebFlight.prototype.init = function () {
     const filesObj = makeFilesObj(this.assetsPath, this.assetsRoute)
 
     hashFilesObj(filesObj)
-
     .then(writeJsUL.bind(null, this.seedScript, this.siteUrl, this.stopCount))
     .then(replaceHtml.bind(null, htmlStrings, htmlFiles))
     // --BELOW: the new script to add items
     .then(addStatusBar.bind(null))
     .then(writeNewHtml.bind(null, this.htmlOutput))
+    
   } else { // BELOW: previous version
     const htmlFiles = Object.keys(this.routes).map((route) => {
       return this.routes[route]

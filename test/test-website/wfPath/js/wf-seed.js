@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-var totalSeeds = 4;
-=======
 var totalSeeds = 5;
->>>>>>> af350241f15a6ceed88a292acd103916d88d4dde
 console.log('xurls', undefined)
 var http = require("http");
  var WebTorrent = require("webtorrent");
@@ -16,18 +12,14 @@ var client = new WebTorrent();
         if (!totalSeeds) console.log("🕊 all seeds active")
       });
 
-<<<<<<< HEAD
-      client.seed('/Users/carolgonzalez/Desktop/WebFlight/test/test-website/img/bird2.jpg', function(torrent) {
-=======
-      client.seed('/Users/Baoyee/Codesmith/WebFlight/test/test-website/img/bird1a.jpg', function(torrent) {
+      client.seed('/Users/carolgonzalez/Desktop/WebFlight/test/test-website/img/bird1a.jpg', function(torrent) {
         --totalSeeds;
         console.log('🐣 ', torrent.files[0].name, ' now seeding at hash ', torrent.infoHash);
 
         if (!totalSeeds) console.log("🕊 all seeds active")
       });
 
-      client.seed('/Users/Baoyee/Codesmith/WebFlight/test/test-website/img/bird2.jpg', function(torrent) {
->>>>>>> af350241f15a6ceed88a292acd103916d88d4dde
+      client.seed('/Users/carolgonzalez/Desktop/WebFlight/test/test-website/img/bird2.jpg', function(torrent) {
         --totalSeeds;
         console.log('🐣 ', torrent.files[0].name, ' now seeding at hash ', torrent.infoHash);
 
