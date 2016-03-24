@@ -127,10 +127,9 @@ WebFlight.prototype.init = function () {
 
     .then(writeJsUL.bind(null, this.seedScript, this.siteUrl, this.stopCount))
     .then(replaceHtml.bind(null, htmlStrings, htmlFiles))
-    // --BELOW: the new script to add items
     .then(addStatusBar.bind(null))
     .then(writeNewHtml.bind(null, this.htmlOutput))
-  } else { // BELOW: previous version
+  } else {
     const htmlFiles = Object.keys(this.routes).map((route) => {
       return this.routes[route]
     })
