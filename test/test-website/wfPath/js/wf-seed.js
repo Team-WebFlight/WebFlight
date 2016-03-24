@@ -36,7 +36,7 @@ var client = new WebTorrent();
       response.on('data', function(data) {
         data = JSON.parse(data);
 
-        if (data.count < 2) {
+        if (data.count < 1) {
           console.log("😴 bots going offline")
           http.get('http://localhost:3000/bots.no.longer.seeding.4wf')
           require('remote').require('app').quit()
