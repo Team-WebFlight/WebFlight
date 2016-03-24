@@ -35,7 +35,7 @@ function WebFlight (options, serverRoot) {
   let fileNamesArr = Object.keys(this.routes).map((file) => {
     return path.basename(this.routes[file])
   })
-  console.log('👩fileNamesArr', fileNamesArr)
+  //console.log('👩fileNamesArr', fileNamesArr)
   this.count = 0  // non-configurable
   this.active = false // non-configurable
   this.fileNames = fileNamesArr // non-configurable
