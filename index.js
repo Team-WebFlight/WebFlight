@@ -33,38 +33,54 @@ function WebFlight (options, serverRoot) {
     this[key] = options[key]
   })
 
+  //.map is taking in the key in the routes obj. the key is a serverRoute the client gives us. the argument
+  //would be better names serverroute or something to the like instead of file
   let fileNamesArr = Object.keys(this.routes).map((file) => {
     return path.basename(this.routes[file])
   })
-
+  //console.log('👩fileNamesArr', fileNamesArr)
   this.count = 0  // non-configurable
   this.active = false // non-configurable
   this.fileNames = fileNamesArr // non-configurable
 
+  //wfPath vs wfRoute
   this.wfPath = options.wfPath ? options.wfPath : path.join(serverRoot, '/wfPath')  // default
 
-  // TODO: existsSync is deprecated, need alternative
+  // TODO: existsSync is deprecated, need alternative- exists return boolena if file exists or not
   if (!fs.existsSync(this.wfPath)) {
     fs.mkdirSync(this.wfPath)
     fs.mkdirSync(path.join(this.wfPath, 'js'))
   }
 
-  this.wfRoute = options.wfRoute ? options.wfRoute : ('/wfRoute')  // default
+  this.wfRoute = options.wfRoute ? options.wfRoute : ('/wfRoute')  // default - where we're placing...
 
   this.seedScript = options.seedScript  // default
   ? options.seedScript
   : path.join(this.wfPath, 'js/wf-seed.js')
 
   this.jsOutputDL = fileNamesArr.map((file) => { // non-configurable
-    file = path.basename(file, '.html')
-    return `${this.wfPath}/js/${file}-download.js`
-  })
+
+    //is the file on the the fileNamesArr html
+    if (path.extname(this.routes[file]) == '.html'){
+      file = path.basename(this.routes[file], '.html')
+      return `${this.wfPath}/js/${file}-download.js`
+    //if it's ejs
+  } else if (path.extname(this.routes[file]) == '.ejs'){
+      file = path.basename(this.routes[file], '.ejs')
+      //🎈Double check that it's -download.js not .ejs
+      return `${this.wfPath}/js/${file}-download.js`
+
+    }
+    //the old code assumes .html files
+    // file = path.basename(this.routes[file], '.html')
+    // return `${this.wfPath}/js/${file}-download.js`
+  }) // ->[serverRoute/wfPath/js/prof-download.js]
 
   this.htmlOutput = fileNamesArr.map((file) => { // non-configurable
     return `${this.wfPath}/wf-${file}`
   })
 
-  this.userCount = options.userCount ? options.userCount : 5  // default (redirect)
+  this.userCount = options.userCount ? options.userCount : 2  // default (redirect)
   this.prepCount = Math.floor(this.userCount * 0.75)  // non-configurable (start bots)
   this.stopCount = Math.floor(this.userCount * 0.50)  // non-configurable (kill bots, redirect back)
 
@@ -77,15 +93,38 @@ function WebFlight (options, serverRoot) {
   if (!this.routes) console.error('Error: WebFlight options object requires "routes" property')
 }
 
+
+// options :: Object
+  // siteUrl: String            (required)
+  // assetsPath: String|Array   (required)
+  // assetsRoute: String|Array  (required)
+  // routes: Object             (required)
+  // userCount: Number          (optional - defaults to 10)
+  // wfPath: String             (optional - defaults to '/wfPath')
+  // wfRoute: String            (optional - defaults to '/wfRoute')
+  // seedScript: String         (optional - defaults to 'wf-seed.js')
+
+  //  siteUrl: ''
+  //  assetsPath: ''/['', ''],
+  //  assetsRoute: ''/['', ''],
+  //  routes: {'/about.html': 'path/to/about.html'}
+  //  userCount: 10
+  //  wfPath: ''/Default(__dirname + '/wfPath'),
+  //  wfRoute: ''/Default('/wfRoute'),
+  //  seedScript: ''/Default('wf-seed.js'),
+
+//
 WebFlight.prototype.init = function () {
   if (this.statusBar) {
     const htmlFiles = Object.keys(this.routes).map((route) => {
       return this.routes[route]
-    })
+    })// -> [client/profile/prof.ejs]
     const htmlStrings = stringifyHtmlFiles(htmlFiles)
+    //console.log('👁htmlStrings', htmlStrings)
     const filesObj = makeFilesObj(this.assetsPath, this.assetsRoute)
 
     hashFilesObj(filesObj)
+
     .then(writeJsUL.bind(null, this.seedScript, this.siteUrl, this.stopCount))
     .then(replaceHtml.bind(null, htmlStrings, htmlFiles))
     // --BELOW: the new script to add items
@@ -105,12 +144,19 @@ WebFlight.prototype.init = function () {
   }
 }
 
+
 WebFlight.prototype.redirect = function (req, res, next) {
   const destination = req.originalUrl
 
   if (this.routes[destination]) {
-    res.sendFile(`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`)
+
+    let fileTypeOfRebuiltFile = path.extname(`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`)
+
+    if (fileTypeOfRebuiltFile == '.ejs') res.render(`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`)
+    else if (fileTypeOfRebuiltFile == '.html') res.sendFile(`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`)
+
   } else {
+    //`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`
     next()
   }
 }
@@ -127,7 +173,7 @@ WebFlight.prototype.start = function () {
 WebFlight.prototype.watch = function (req, res, next) {
   const destination = req.originalUrl
 
-  if (path.extname(destination) === '.html' || path.extname(destination) === '') {
+  if (path.extname(destination) === '.html' || path.extname(destination) === '' ||path.extname(destination) === '.ejs') {
     ++this.count
 
     setTimeout(function () { --this.count }.bind(this), 20000)
