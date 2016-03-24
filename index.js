@@ -35,7 +35,7 @@ function WebFlight (options, serverRoot) {
   let fileNamesArr = Object.keys(this.routes).map((file) => {
     return path.basename(this.routes[file])
   })
-
+  console.log('👩fileNamesArr', fileNamesArr)
   this.count = 0  // non-configurable
   this.active = false // non-configurable
   this.fileNames = fileNamesArr // non-configurable
@@ -50,7 +50,6 @@ function WebFlight (options, serverRoot) {
   }
 
   this.wfRoute = options.wfRoute ? options.wfRoute : ('/wfRoute')  // default - where we're placing...
-
 
   this.seedScript = options.seedScript  // default
   ? options.seedScript
@@ -77,11 +76,11 @@ function WebFlight (options, serverRoot) {
     return `${this.wfPath}/wf-${file}`
   })
 
-  this.userCount = options.userCount ? options.userCount : 5  // default (redirect)
+  this.userCount = options.userCount ? options.userCount : 2  // default (redirect)
   this.prepCount = Math.floor(this.userCount * 0.75)  // non-configurable (start bots)
   this.stopCount = Math.floor(this.userCount * 0.50)  // non-configurable (kill bots, redirect back)
 
-  🎈console.log('wfobj', this)
+  //console.log('wfobj🤑', this)
 
   if (!this.siteUrl) console.error('Error: WebFlight options object requires "siteUrl" property')
   if (!this.assetsPath) console.error('Error: WebFlight options object requires "assetsPath" property')
@@ -111,13 +110,14 @@ function WebFlight (options, serverRoot) {
 
 //
 WebFlight.prototype.init = function () {
+  //console.log('👁this.routes', this.routes)
   //htmlFiles name has to be changed now that handling ejs
   const htmlFiles = Object.keys(this.routes).map((route) => {
     return this.routes[route]
   }) // -> [client/profile/prof.ejs]
-
   //htmlStrings name to be updated as well as any variable name/function name that alludes to only HTML being handled
   const htmlStrings = stringifyHtmlFiles(htmlFiles)
+  //console.log('👁htmlStrings', htmlStrings)
   const filesObj = makeFilesObj(this.assetsPath, this.assetsRoute)
 
   hashFilesObj(filesObj)
@@ -131,8 +131,14 @@ WebFlight.prototype.redirect = function (req, res, next) {
   const destination = req.originalUrl
 
   if (this.routes[destination]) {
-    res.sendFile(`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`)
+
+    let fileTypeOfRebuiltFile = path.extname(`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`)
+
+    if (fileTypeOfRebuiltFile == '.ejs') res.render(`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`)
+    else if (fileTypeOfRebuiltFile == '.html') res.sendFile(`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`)
+
   } else {
+    //`/${this.wfPath}/wf-${path.basename(this.routes[destination])}`
     next()
   }
 }
@@ -146,7 +152,7 @@ WebFlight.prototype.start = function () {
 WebFlight.prototype.watch = function (req, res, next) {
   const destination = req.originalUrl
 
-  if (path.extname(destination) === '.html' || path.extname(destination) === '') {
+  if (path.extname(destination) === '.html' || path.extname(destination) === '' ||path.extname(destination) === '.ejs') {
     ++this.count
 
     setTimeout(function () { --this.count }.bind(this), 20000)
