@@ -4,14 +4,15 @@ const fs = require('fs')
 const path = require('path')
 const child_process = require('child_process')
 
-const stringifyHtmlFiles = require('./lib/stringifyHtmlFiles')
+const stringifyFiles = require('./lib/stringifyFiles')
 const createFilesObj = require('./lib/createFilesObj')
 const hashFilesObj = require('./lib/hashFilesObj')
 const writeJsUL = require('./lib/writeJsUL')
 const replaceHtml = require('./lib/replaceHtml')
 const addStatusBar = require('./lib/addStatusBar')
 const writeNewHtml = require('./lib/writeNewHtml')
-const botGenerator = require(('./src/botGenerator'))
+const botGenerator = require(('./lib/botGenerator'))
+const uncommentingEJS = require('./lib/uncommentingEJS')
 
 /**
 * @param {Object} options
@@ -54,8 +55,15 @@ function WebFlight (options, serverRoot) {
   this.seedScript = options.seedScript || path.join(this.wfPath, 'js/wf-seed.js')  // default
 
   this.jsOutputDL = fileNamesArr.map((file) => { // non-configurable
-    file = path.basename(file, '.html')
-    return `${this.wfPath}/js/${file}-download.js`
+    //is the file on the the fileNamesArr html
+    if (path.extname(this.routes[file]) == '.html'){
+      file = path.basename(this.routes[file], '.html')
+      return `${this.wfPath}/js/${file}-download.js`
+    //if it's ejs
+  } else if (path.extname(this.routes[file]) == '.ejs'){
+      file = path.basename(this.routes[file], '.ejs')
+      return `${this.wfPath}/js/${file}-download.js`
+    }
   })
 
   this.htmlOutput = fileNamesArr.map((file) => { // non-configurable
@@ -67,7 +75,7 @@ function WebFlight (options, serverRoot) {
   this.stopCount = Math.floor(this.userCount * 0.50)  // non-configurable (kill bots, redirect back)
 
   this.statusBar = options.statusBar || true // default
-  console.log('wfobj', this)
+  console.log('😲wfobj', this)
 
   if (!this.siteUrl) console.error('Error: WebFlight options object requires "siteUrl" property')
   if (!this.assetsPath) console.error('Error: WebFlight options object requires "assetsPath" property')
@@ -75,11 +83,15 @@ function WebFlight (options, serverRoot) {
   if (!this.routes) console.error('Error: WebFlight options object requires "routes" property')
 }
 
+//////////////
+//🏓INIT FUNC
+/////////////
 WebFlight.prototype.init = function () {
   const htmlFiles = Object.keys(this.routes).map((route) => {
     return this.routes[route]
   })
-  const htmlStrings = stringifyHtmlFiles(htmlFiles)
+  const htmlStrings = stringifyFiles(htmlFiles)
+  //console.log('htmlStrings😴',htmlStrings);
   const filesObj = createFilesObj(this.assetsPath, this.assetsRoute)
 
   if (this.statusBar) {
@@ -87,15 +99,21 @@ WebFlight.prototype.init = function () {
     .then(writeJsUL.bind(null, this.seedScript, this.siteUrl, this.stopCount))
     .then(replaceHtml.bind(null, htmlStrings, htmlFiles))
     .then(addStatusBar.bind(null))
+    .then(uncommentingEJS.bind(null))
     .then(writeNewHtml.bind(null, this.htmlOutput))
+    //console.log('this.htmlOutputs🖖', this.htmlOutput )
   } else {
     hashFilesObj(filesObj)
     .then(writeJsUL.bind(null, this.seedScript, this.siteUrl, this.stopCount))
     .then(replaceHtml.bind(null, htmlStrings, htmlFiles))
+    .then(uncommentingEJS.bind(null))
     .then(writeNewHtml.bind(null, this.htmlOutput))
+    //console.log('this.htmlOutput🖖', this.htmlOutput )
   }
 }
-
+////////////////
+//🏓REDIRECT FUNC
+////////////////
 WebFlight.prototype.redirect = function (req, res, next) {
   const destination = req.originalUrl
 
@@ -105,6 +123,9 @@ WebFlight.prototype.redirect = function (req, res, next) {
     next()
   }
 }
+////////////////
+//🏓START FUNC
+///////////////
 
 WebFlight.prototype.start = function () {
   child_process.exec('export DISPLAY=\'0:99\'')
@@ -114,7 +135,9 @@ WebFlight.prototype.start = function () {
 
   this.active = true
 }
-
+//////////////
+//🏓WATCH FUNC
+/////////////
 WebFlight.prototype.watch = function (req, res, next) {
   const destination = req.originalUrl
 
