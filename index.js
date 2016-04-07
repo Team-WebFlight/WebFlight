@@ -12,14 +12,13 @@ const replaceHtml = require('./lib/replaceHtml')
 const addStatusBar = require('./lib/addStatusBar')
 const writeNewHtml = require('./lib/writeNewHtml')
 const uncommentingEJS = require('./lib/uncommentingEJS')
-const botGenerator = require('./lib/botGenerator')
-const botGeneratorDev = require('./lib/botGenerator-devMode')
+let botGenerator
 
 /**
 * @param {Object} options
 *   siteUrl: String            (required)
-*   assetsPath: String|Array   (required)
-*   assetsRoute: String|Array  (required)
+*   assetsPath: Array          (required)
+*   assetsRoute: Array         (required)
 *   routes: Object             (required)
 *   userCount: Number          (optional - defaults to 10)
 *   wfPath: String             (optional - defaults to '/wfPath')
@@ -77,6 +76,9 @@ function WebFlight (options, serverRoot) {
   this.statusBar = options.statusBar || true // default
   this.devMode = options.devMode || true // default
 
+  // Require for botGenerator is based on devMode flag
+  setBotGenerator(this.devMode)
+
   if (!this.siteUrl) showError('siteUrl')
   if (!this.assetsPath) showError('assetsPath')
   if (!this.assetsRoute) showError('assetsRoute')
@@ -117,14 +119,13 @@ WebFlight.prototype.redirect = function (req, res, next) {
 }
 
 WebFlight.prototype.start = function () {
-  child_process.exec('export DISPLAY=\'0:99\'')
-  child_process.exec('Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &')
-
-  if (!this.devMode) botGenerator(this.seedScript)
-  else {
-    botGeneratorDev(this.seedScript)
+  // if devMode is false, create screen for Xvfb to run
+  if (!this.devMode) {
+    child_process.exec('export DISPLAY=\'0:99\'')
+    child_process.exec('Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &')
   }
 
+  botGenerator(this.seedScript)
   this.active = true
 }
 
@@ -153,4 +154,8 @@ function showError (input) {
   else console.log(`Error: WebFlight options object requires "${input}" property`)
 }
 
+function setBotGenerator (bool) {
+  return bool ? botGenerator = require('./lib/botGeneratorDevMode') :
+    botGenerator = require('./lib/botGenerator')
+}
 module.exports = WebFlight
