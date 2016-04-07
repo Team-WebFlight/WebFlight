@@ -2,7 +2,6 @@
 'use strict'
 
 const commentingEjsFunc = require('../../lib/commentingEJS.js')
-const commentedSnowcones = require('../fixtures/commentedSnowcones.js')
 const ejsString = require('../fixtures/stringejs.js').string
 const ejsStringCommented = require('../fixtures/stringejs.js').commentedString
 const chai = require('chai')
