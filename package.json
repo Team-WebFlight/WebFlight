@@ -1,6 +1,6 @@
 {
   "name": "webflight",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Turns a server into a seed for peer-to-peer content delivery",
   "main": "index.js",
   "scripts": {

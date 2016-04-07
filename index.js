@@ -13,6 +13,7 @@ const addStatusBar = require('./lib/addStatusBar')
 const writeNewHtml = require('./lib/writeNewHtml')
 const uncommentingEJS = require('./lib/uncommentingEJS')
 const botGenerator = require('./lib/botGenerator')
+const botGeneratorDev = require('./lib/botGenerator-devMode')
 
 /**
 * @param {Object} options
@@ -25,6 +26,7 @@ const botGenerator = require('./lib/botGenerator')
 *   wfRoute: String            (optional - defaults to '/wfRoute')
 *   seedScript: String         (optional - defaults to 'wf-seed.js')
 *   statusBar: Boolean         (optional - defaults to true)
+*   devMode:   Boolean         (option   - defaults to true)
 *
 * @param {string} serverRoot - path to root folder
 */
@@ -73,6 +75,7 @@ function WebFlight (options, serverRoot) {
   this.stopCount = Math.floor(this.userCount * 0.50)  // non-configurable (kill bots, redirect back)
 
   this.statusBar = options.statusBar || true // default
+  this.devMode = options.devMode || true // default
 
   if (!this.siteUrl) showError('siteUrl')
   if (!this.assetsPath) showError('assetsPath')
@@ -117,7 +120,10 @@ WebFlight.prototype.start = function () {
   child_process.exec('export DISPLAY=\'0:99\'')
   child_process.exec('Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &')
 
-  botGenerator(this.seedScript)
+  if (!this.devMode) botGenerator(this.seedScript)
+  else {
+    botGeneratorDev(this.seedScript)
+  }
 
   this.active = true
 }
