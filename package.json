@@ -12,7 +12,8 @@
     "parser": "babel-eslint",
     "ignore": [
       "/test/fixtures/*",
-      "/test/tests/wfstart.js"
+      "/test/tests/wfstart.js",
+      "/test/tests/addStatusBar/*"
     ]
   },
   "repository": {
