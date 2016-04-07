@@ -11,16 +11,22 @@ npm install webflight
 
 ### Usage
 
-It's easy to incorporate WebFlight into your existing site! Just provide us with a few details on where to find the assets you want to seed, and we'll take care of the rest.
+It's easy to incorporate WebFlight into your existing site! Just provide us with a few details on where to find the assets you want to seed, and we'll take care of the rest. *Note* WebFlight currently requires Node 5.x
 
 #### Initialize WebFlight
 
 ```javascript
 const WebFlight = require('webflight')
-
 const wf = new WebFlight(options, path)
+const express = require('express')
+const app = express()
 
+// start up WebFlight
 wf.init()
+
+// then use it on your express routes
+app.use(wf.redirect)
+
 ```
 
 ##### Options
