@@ -155,7 +155,7 @@ function showError (input) {
 }
 
 function setBotGenerator (bool) {
-  return bool ? botGenerator = require('./lib/botGeneratorDevMode') :
-    botGenerator = require('./lib/botGenerator')
+  return bool ? botGenerator = require('./lib/botGeneratorDevMode')
+              : botGenerator = require('./lib/botGenerator')
 }
 module.exports = WebFlight
