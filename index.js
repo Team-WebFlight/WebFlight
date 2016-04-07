@@ -122,7 +122,7 @@ WebFlight.prototype.start = function () {
 
   if (!this.devMode) botGenerator(this.seedScript)
   else {
-    botGenerator(this.seedScript)
+    botGeneratorDev(this.seedScript)
   }
 
   this.active = true
