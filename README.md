@@ -1,6 +1,7 @@
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://www.standardjs.com)
-
+[![Build
+Status](https://travis-ci.org/Team-WebFlight/WebFlight.svg?branch=master)](https://travis-ci.org/Team-WebFlight/WebFlight)
 # WebFlight
 WebFlight enables the users visiting a site to serve the content of that site. P2P content sharing technology powered with :heart: by [WebTorrent](https://webtorrent.io)!
 
@@ -11,7 +12,7 @@ npm install webflight
 
 ### Usage
 
-It's easy to incorporate WebFlight into your existing site! Just provide us with a few details on where to find the assets you want to seed, and we'll take care of the rest. *Note* WebFlight currently requires Node 5.x
+It's easy to incorporate WebFlight into your existing site! Just provide us with a few details on where to find the assets you want to seed, and we'll take care of the rest. __Note: WebFlight currently requires Node 5.x__
 
 #### Initialize WebFlight
 
