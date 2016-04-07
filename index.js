@@ -13,7 +13,7 @@ const addStatusBar = require('./lib/addStatusBar')
 const writeNewHtml = require('./lib/writeNewHtml')
 const uncommentingEJS = require('./lib/uncommentingEJS')
 const botGenerator = require('./lib/botGenerator')
-const botGeneratorDev = require('./lib/botGenerator-devMode')
+const botGeneratorDev = require('./lib/botGeneratorDevMode')
 
 /**
 * @param {Object} options
