@@ -33,8 +33,8 @@ app.use(wf.redirect)
 ##### Options
 
 ```siteUrl``` - Your website url
-<br>```assetsPath``` - The absolute path(s) to the folder(s) containing your assets
-<br>```assetsRoute``` - The server route(s) to your assets
+<br>```assetsPath``` - An array of the absolute path(s) to the folder(s) containing your assets
+<br>```assetsRoute``` - An array of the server route(s) to your assets
 <br>```routes: { '/route': '/path/to/route.html' }``` - The routes and corresponding paths to your html files
 <br>```userCount``` - The number of simultaneous users on your site at which WebFlight will begin to send subsequent users to the peer-hosted version of your site
 <br>```wfPath``` - (optional) The folder WebFlight files will appear in
@@ -43,13 +43,12 @@ app.use(wf.redirect)
 <br>`path` - The root path on your server
 <br>`statusBar` - Dropdown element that will appear on your website that shows users what is being seeded
 <br>`devMode` - Turns off xvcb by default. Xvcb is required to launch Electron
-on a server, but breaks development on OSX. Set to false before deploying youru
-app with WebFlight
+on a server, but breaks development on OSX. Set to false before deploying your app with WebFlight
 ```
 {
   siteURL: String             // Required
-  assetsPath: String|Array    // Required
-  assetsRoute: String|Array   // Required
+  assetsPath: Array           // Required
+  assetsRoute: Array          // Required
   routes: Object              // Required
   userCount: Number           // Optional - defaults to 10
   wfPath: String              // Optional - defaults to '/wfPath'
@@ -64,7 +63,7 @@ app with WebFlight
 Once seeding threshold is met, redirect requests to webflight routes.
 
 ## `webflight.start()`
-Call starts the seeding process.
+Call starts the seeding process on all assets in assetsPath.
 
 ## `webflight.watch(req, res, next)`
 Watches for http requests to server. Based on a threshold specified in opts, `.watch()` will call `.start()` to begin seeding. When peers are connected, initial seeds are no longer necessary and are killed
