@@ -3,7 +3,8 @@
 
 const commentingEjsFunc = require('../../lib/commentingEJS.js')
 const commentedSnowcones = require('../fixtures/commentedSnowcones.js')
-const ejsString = require('../fixtures/stringejs.js')
+const ejsString = require('../fixtures/stringejs.js').string
+const ejsStringCommented = require('../fixtures/stringejs.js').commentedString
 const chai = require('chai')
 let assert = chai.assert
 
@@ -13,6 +14,8 @@ describe('commentingEjsFunc', () => {
     assert.isString(output, 'writes string')
   })
   it('should output an ejs string with commented out snowcones', () => {
-    //let output = commentingEjsFunc(ejsString)
-  //})
+    let output = commentingEjsFunc(ejsString)
+    assert.equal(output, ejsStringCommented, 'strings are == ')
+  })
 })
+
