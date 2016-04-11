@@ -6,13 +6,13 @@ const child_process = require('child_process')
 
 const stringifyFiles = require('./lib/stringifyFiles')
 const createFilesObj = require('./lib/createFilesObj')
-const hashFilesObj = require('./lib/hashFilesObj')
-const writeJsUL = require('./lib/writeJsUL')
+const createSeedObj = require('./lib/createSeedObj')
+const hashSeedObj = require('./lib/hashSeedObj')
+const writeSeedScript = require('./lib/writeSeedScript')
 const replaceHtml = require('./lib/replaceHtml')
-const addStatusBar = require('./lib/addStatusBar')
 const writeNewHtml = require('./lib/writeNewHtml')
 const uncommentingEJS = require('./lib/uncommentingEJS')
-let botGenerator
+let startBots
 
 /**
 * @param {Object} options
@@ -35,25 +35,31 @@ function WebFlight (options, serverRoot) {
     this[key] = options[key]
   })
 
-  let fileNamesArr = Object.keys(this.routes).map((file) => {
+  const fileNamesArr = Object.keys(this.routes).map((file) => {
     return path.basename(this.routes[file])
   })
 
-  this.count = 0  // non-configurable
-  this.active = false // non-configurable
-  this.fileNames = fileNamesArr // non-configurable
+  // defaults
+  this.wfPath = options.wfPath || path.join(serverRoot, '/wfPath')
+  this.wfRoute = options.wfRoute || '/wfRoute'
+  this.seedScript = options.seedScript || path.join(this.wfPath, 'js/wf-seed.js')
+  this.userCount = options.userCount || 5
+  this.statusBar = options.statusBar // defaults to "true" (undefined)
+  this.devMode = options.devMode // defaults to "true" (undefined)
 
-  this.wfPath = options.wfPath || path.join(serverRoot, '/wfPath')  // default
+  // non-configurables
+  this.count = 0
+  this.active = false
+  this.fileNames = fileNamesArr
+  this.htmlOutput = fileNamesArr.map((file) => `${this.wfPath}/wf-${file}`)
+  this.prepCount = Math.floor(this.userCount * 0.75)
+  this.stopCount = Math.floor(this.userCount * 0.50)
 
   // TODO: existsSync is deprecated, need alternative
   if (!fs.existsSync(this.wfPath)) {
     fs.mkdirSync(this.wfPath)
     fs.mkdirSync(path.join(this.wfPath, 'js'))
   }
-
-  this.wfRoute = options.wfRoute || ('/wfRoute')  // default
-
-  this.seedScript = options.seedScript || path.join(this.wfPath, 'js/wf-seed.js')  // default
 
   this.jsOutputDL = fileNamesArr.map((file) => { // non-configurable
     if (path.extname(this.routes[file]) === '.html') {
@@ -65,20 +71,6 @@ function WebFlight (options, serverRoot) {
     }
   })
 
-  this.htmlOutput = fileNamesArr.map((file) => { // non-configurable
-    return `${this.wfPath}/wf-${file}`
-  })
-
-  this.userCount = options.userCount || 5  // default (redirect)
-  this.prepCount = Math.floor(this.userCount * 0.75)  // non-configurable (start bots)
-  this.stopCount = Math.floor(this.userCount * 0.50)  // non-configurable (kill bots, redirect back)
-
-  this.statusBar = options.statusBar || true // default
-  this.devMode = options.devMode || true // default
-
-  // Require for botGenerator is based on devMode flag
-  setBotGenerator(this.devMode)
-
   if (!this.siteUrl) showError('siteUrl')
   if (!this.assetsPath) showError('assetsPath')
   if (!this.assetsRoute) showError('assetsRoute')
@@ -87,25 +79,20 @@ function WebFlight (options, serverRoot) {
 }
 
 WebFlight.prototype.init = function () {
+  // TODO: Add 'commentingEJS' back into init
+
   const htmlFiles = Object.keys(this.routes).map((route) => {
     return this.routes[route]
   })
   const htmlStrings = stringifyFiles(htmlFiles)
   const filesObj = createFilesObj(this.assetsPath, this.assetsRoute)
-  if (this.statusBar) {
-    hashFilesObj(filesObj)
-    .then(writeJsUL.bind(null, this.seedScript, this.siteUrl, this.stopCount))
-    .then(replaceHtml.bind(null, htmlStrings, htmlFiles))
-    .then(addStatusBar.bind(null))
-    .then(uncommentingEJS.bind(null))
-    .then(writeNewHtml.bind(null, this.htmlOutput))
-  } else {
-    hashFilesObj(filesObj)
-    .then(writeJsUL.bind(null, this.seedScript, this.siteUrl, this.stopCount))
-    .then(replaceHtml.bind(null, htmlStrings, htmlFiles))
-    .then(uncommentingEJS.bind(null))
-    .then(writeNewHtml.bind(null, this.htmlOutput))
-  }
+  const seedObj = createSeedObj(htmlStrings, filesObj)
+
+  hashSeedObj(seedObj)
+  .then(writeSeedScript.bind(null, this.seedScript, this.siteUrl, this.stopCount))
+  .then(replaceHtml.bind(null, htmlStrings, this.statusBar))
+  .then(uncommentingEJS.bind(null))
+  .then(writeNewHtml.bind(null, this.htmlOutput))
 }
 
 WebFlight.prototype.redirect = function (req, res, next) {
@@ -119,30 +106,43 @@ WebFlight.prototype.redirect = function (req, res, next) {
 }
 
 WebFlight.prototype.start = function () {
+  // TODO: check if these already exist
+  child_process.exec('export DISPLAY=\'0:99\'')
+  child_process.exec('Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &')
+
+  if (typeof this.devMode === 'undefined') startBots = require('./lib/startBotsDevMode')
+  else startBots = require('./lib/startBots')
+
+  startBots(this.seedScript)
+
   // if devMode is false, create screen for Xvfb to run
   if (!this.devMode) {
     child_process.exec('export DISPLAY=\'0:99\'')
     child_process.exec('Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &')
   }
 
-  botGenerator(this.seedScript)
+  startBots(this.seedScript)
   this.active = true
 }
 
 WebFlight.prototype.watch = function (req, res, next) {
   const destination = req.originalUrl
 
+  // keep count of users on page, decay after 10 seconds
   if (path.extname(destination) === '.html' || path.extname(destination) === '') {
     ++this.count
 
     setTimeout(function () { --this.count }.bind(this), 20000)
   }
 
+  // bots check how many current users
   if (destination === '/count.check.4wf') return res.send({count: this.count})
   if (destination === '/bots.no.longer.seeding.4wf') {
     this.active = false
     console.log('bots ending redirect')
   }
+
+  // check when to start and redirect
   if (!this.active && this.count > this.prepCount) this.start()
   if (this.count > this.userCount) return this.redirect(req, res, next)
 
@@ -154,8 +154,4 @@ function showError (input) {
   else console.log(`Error: WebFlight options object requires "${input}" property`)
 }
 
-function setBotGenerator (bool) {
-  return bool ? botGenerator = require('./lib/botGeneratorDevMode')
-              : botGenerator = require('./lib/botGenerator')
-}
 module.exports = WebFlight
