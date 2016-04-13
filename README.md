@@ -1,7 +1,5 @@
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://www.standardjs.com)
-[![Build
-Status](https://travis-ci.org/Team-WebFlight/WebFlight.svg?branch=master)](https://travis-ci.org/Team-WebFlight/WebFlight)
 # WebFlight
 WebFlight enables the users visiting a site to serve the content of that site. P2P content sharing technology powered with :heart: by [WebTorrent](https://webtorrent.io)!
 
@@ -21,12 +19,24 @@ const WebFlight = require('webflight')
 const wf = new WebFlight(options, path)
 const express = require('express')
 const app = express()
+const path = require('path')
+
+// Configure options
+const wfOpts = {
+  siteUrl: 'http://www.example.com',
+  assetsPath: ['/public/assets/imgs', '/public/assets/video'],
+  assetsRoute: ['/media'],
+  routes: {
+    '/': path.join(__dirname, 'index.html'),
+    '/products': path.join(__dirname, 'products.html')
+  }
+}
 
 // start up WebFlight
 wf.init()
 
 // then use it on your express routes
-app.use(wf.redirect)
+app.use(wf.redirect.bind(wf))
 
 ```
 
